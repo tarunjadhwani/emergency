@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'next-doctor' => 'static#doctorNextStep'
   get 'next-hospital' => 'static#hospitalNextStep'
   get 'fill-address' => 'static#doctorAddress'
+  get 'patient-condition' => 'static#patientCondition'
+
 
   devise_for :users
   namespace :admin do

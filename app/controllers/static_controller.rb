@@ -10,4 +10,7 @@ class StaticController < ApplicationController
 
   def doctorAddress
   end
+
+  def patientCondition
+  end
 end

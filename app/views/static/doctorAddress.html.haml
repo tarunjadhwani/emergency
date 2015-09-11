@@ -19,10 +19,11 @@
           Use Current Location
     .option-text 
       OR
-    .phone-input-field
-      %input{:type => "text", :class => "phone-number-patient form-control", :id => "inputEmail"}
-    .phone-submit-button-wrapper
-      %input{:type => "submit", :class => "btn btn-success btn-phone-submit"}
+    %form{:action => "patient-condition"}
+      .phone-input-field
+        %input{:type => "text", :class => "phone-number-patient form-control", :id => "inputEmail"}
+      .phone-submit-button-wrapper
+        %input{:type => "submit", :class => "btn btn-success btn-phone-submit"}
 
 
 :javascript
