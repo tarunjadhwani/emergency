@@ -1,0 +1,23 @@
+= simple_form_for(@admin_doctor, url: admin_doctors_path) do |f|
+  = f.error_notification
+
+  .form-inputs
+    .row
+      .col-xs-12
+        .form-group
+          = f.input :name, input_html: {class: "form-control"}
+    .row
+      .col-xs-12
+        .form-group
+          = f.input :mobile, input_html: {class: "form-control", number: true}
+
+    .row
+      .col-xs-12
+        .form-group
+          = f.input :address, input_html: {class: "form-control"}
+
+  .form-actions
+    = f.button :submit
+
+:javascript
+  $("#new_doctor").validate();

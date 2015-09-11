@@ -1,0 +1,50 @@
+- content_for :title, 'Listing hospitals'
+
+%h3 Listing hospitals
+
+.row
+  .col-xs-12
+    .col-xs-2
+      %span.badge.listing-result
+        = pluralize(@admin_hospitals.total_count, 'Hospital')
+    .col-xs-8
+      = search_form_for([:admin, @search_admin_hospitals]) do |f|
+        .input-group
+          = f.search_field :name_or_address_cont, placeholder: 'Search by name or address ...', type: 'search', value: "#{params[:q][:name_or_address_cont] rescue nil}", class: "form-control"
+          %span.input-group-btn
+            = f.submit class: "btn btn-warning" do
+              %span.glyphicon.glyphicon-search
+
+    .col-xs-2
+      = link_to 'Create Doctor', new_admin_hospital_path, class: "btn btn-primary btn-raised pull-right no-margin-top"
+
+%br
+
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th #
+        %th Name
+        %th Phone
+        %th Address
+        %th Contact Person
+        %th Rating
+        %th Actions
+    %tbody
+      - @admin_hospitals.each_with_index do |hospital, i|
+        %tr
+          %th{scope: 'row'}
+            = i + 1
+          %td= link_to hospital.name, [:admin, hospital]
+          %td= hospital.phone
+          %td= hospital.address
+          %td= hospital.contact_name
+          %td= hospital.rating
+          %td
+            = link_to 'Edit', edit_admin_hospital_path(hospital)
+            = link_to 'Destroy', [:admin, hospital], method: :delete, data: { confirm: 'Are you sure?' }
+
+  .text-center
+    = paginate @admin_hospitals
+
