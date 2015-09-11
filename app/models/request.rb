@@ -15,6 +15,7 @@
 #
 
 class Request < ActiveRecord::Base
+  validates_presence_of :mobile
   has_and_belongs_to_many :ambulances
   has_and_belongs_to_many :symptoms
   has_and_belongs_to_many :diseases

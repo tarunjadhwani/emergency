@@ -4,7 +4,8 @@ class Admin::AmbulancesController < AdminController
   # GET /ambulances
   # GET /ambulances.json
   def index
-    @ambulances = Ambulance.all
+    @search_ambulances = Ambulance.order(created_at: :desc).ransack(params[:q])
+    @ambulances = @search_ambulances.result(distinct: true).page(params[:page])
   end
 
   # GET /ambulances/1
@@ -69,6 +70,6 @@ class Admin::AmbulancesController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ambulance_params
-      params[:ambulance]
+      params[:ambulance].permit(:vendor_name, :registration_number, :mobile, :driver_name)
     end
 end

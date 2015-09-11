@@ -4,7 +4,8 @@ class Admin::PrecautionsController < AdminController
   # GET /precautions
   # GET /precautions.json
   def index
-    @precautions = Precaution.all
+    @search_precautions = Precaution.order(created_at: :desc).ransack(params[:q])
+    @precautions = @search_precautions.result(distinct: true).page(params[:page])
   end
 
   # GET /precautions/1

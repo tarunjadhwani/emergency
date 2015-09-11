@@ -4,7 +4,8 @@ class Admin::SymptomsController < AdminController
   # GET /symptoms
   # GET /symptoms.json
   def index
-    @symptoms = Symptom.all
+    @search_symptoms = Symptom.order(created_at: :desc).ransack(params[:q])
+    @symptoms = @search_symptoms.result(distinct: true).page(params[:page])
   end
 
   # GET /symptoms/1

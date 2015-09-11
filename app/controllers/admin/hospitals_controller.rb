@@ -1,4 +1,4 @@
-class Admin::HospitalsController < ApplicationController
+class Admin::HospitalsController < AdminController
   before_action :set_admin_hospital, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/hospitals
