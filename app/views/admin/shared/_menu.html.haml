@@ -21,4 +21,7 @@
           %a{:href => admin_requests_path } Requests
         %li{ :class => ("active" if controller?("admin/symptoms")) }
           %a{:href => admin_symptoms_path } Symptoms
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          / # = link_to('Logout', destroy_admin_session_path, :method => :delete)
   / /.container-fluid
