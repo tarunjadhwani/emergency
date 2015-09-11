@@ -1,7 +1,10 @@
-%h1 Editing admin_doctor
+- content_for :title, @admin_doctor.name
 
-= render 'form'
+%h3= "Editing #{@admin_doctor.name}"
 
-= link_to 'Show', @admin_doctor
+.well
+  = render 'form'
+
+= link_to 'Show', [:admin, @admin_doctor]
 \|
 = link_to 'Back', admin_doctors_path

@@ -1,4 +1,24 @@
-%h1 Listing doctors
+- content_for :title, 'Listing doctors'
+
+%h3 Listing doctors
+
+.row
+  .col-xs-12
+    .col-xs-2
+      %span.badge.listing-result
+        = pluralize(@admin_doctors.total_count, 'Doctor')
+    .col-xs-8
+      = search_form_for([:admin, @search_admin_doctors]) do |f|
+        .input-group
+          = f.search_field :name_or_address_cont, placeholder: 'Search by name or address ...', type: 'search', value: "#{params[:q][:name_or_address_cont] rescue nil}", class: "form-control"
+          %span.input-group-btn
+            = f.submit class: "btn btn-warning" do
+              %span.glyphicon.glyphicon-search
+
+    .col-xs-2
+      = link_to 'Create Doctor', new_admin_doctor_path, class: "btn btn-primary btn-raised pull-right no-margin-top"
+
+%br
 
 .table-responsive
   %table.table.table-striped
@@ -16,7 +36,7 @@
         %tr
           %th{scope: 'row'}
             = i + 1
-          %td= link_to doctor.name, doctor
+          %td= link_to doctor.name, [:admin, doctor]
           %td= doctor.mobile
           %td= doctor.address
           %td= doctor.recommendations
@@ -37,7 +57,8 @@
                 = doctor_type
           %td
             = link_to 'Edit', edit_admin_doctor_path(doctor)
-            = link_to 'Destroy', doctor, method: :delete, data: { confirm: 'Are you sure?' }
+            = link_to 'Destroy', [:admin, doctor], method: :delete, data: { confirm: 'Are you sure?' }
 
-= link_to 'Create Doctor', new_admin_doctor_path
+  .text-center
+    = paginate @admin_doctors
 

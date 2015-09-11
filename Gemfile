@@ -44,6 +44,8 @@ gem 'simple_form'
 gem 'passenger'
 gem 'jquery-turbolinks'
 gem 'faker'
+gem 'ransack'
+gem 'kaminari'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views

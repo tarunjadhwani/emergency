@@ -3,7 +3,8 @@ class Admin::DoctorsController < ApplicationController
 
   # GET /admin/doctors
   def index
-    @admin_doctors = Doctor.all
+    @search_admin_doctors = Doctor.order(created_at: :desc).ransack(params[:q])
+    @admin_doctors = @search_admin_doctors.result(distinct: true).page(params[:page])
   end
 
   # GET /admin/doctors/1

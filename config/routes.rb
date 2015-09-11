@@ -9,10 +9,9 @@ Rails.application.routes.draw do
     resources :requests
     resources :doctors
     resources :ambulances
+    resources :nurses, controller: 'doctors'
+    resources :cpr_experts, controller: 'doctors'
+    resources :resident_doctors, controller: 'doctors'
+    resources :er_doctors, controller: 'doctors'
   end
-
-  resources :nurses, controller: 'admin/doctors'
-  resources :cpr_experts, controller: 'admin/doctors'
-  resources :resident_doctors, controller: 'admin/doctors'
-  resources :er_doctors, controller: 'admin/doctors'
 end

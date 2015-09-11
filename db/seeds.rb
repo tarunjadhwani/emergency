@@ -6,6 +6,7 @@ Faker::Config.locale = 'en-IND'
       name: Faker::Name.name,
       mobile: Faker::PhoneNumber.cell_phone,
       address: "J.P. Nagar, Bangalore",
+      recommendations: [1..99].sample,
       lat: (12.88..12.92).step(0.000001).map { |x| x.round(6) }.sample,
       long: (77.57..77.59).step(0.000001).map { |x| x.round(6) }.sample,
       type: ['Nurse', 'CprExpert', 'ResidentDoctor', 'ErDoctor'].sample
