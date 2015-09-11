@@ -1,0 +1,118 @@
+// Place all the styles related to the static controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'responsive.scss';
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,100,300);
+
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px; 
+  @include from($break-sm) {
+    font-size: 16px;
+  }
+}
+
+body { 
+  
+}
+
+.link-block {
+  text-decoration: none !important;
+}
+
+.select-home-page {
+  height: 6vh;
+  -webkit-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.5);
+  margin-left: -15px;
+  margin-right: -15px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.select-box-text {
+  color: #747474;
+  font-size: 1rem;
+  margin-left: 30px;
+  line-height: 6vh;
+  font-family: 'Roboto', sans-serif;
+}
+
+.select-box-text-back {
+  color: #747474;
+  font-size: 1rem;
+  margin-left: 10px;
+  line-height: 6vh;
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+}
+
+.back-arrow {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.back-arrow-image {
+  margin-top: -6px;
+}
+
+.hospital-master {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  text-decoration: none;
+}
+
+.hospital-go {
+  height: 46.5vh;
+  margin-left: -15px;
+  background-color: #7ca4e9;
+  margin-right: -15px;
+  margin-bottom: 0.5vh;
+}
+
+.ambulance-go {
+  height: 46.5vh;
+  margin-left: -15px;
+  background-color: #7ae68e;
+  margin-right: -15px;
+  margin-bottom: 0.5vh;
+}
+
+.vehicle-go {
+  height: 46.5vh;
+  margin-left: -15px;
+  background-color: #cae562;
+  margin-right: -15px;
+  margin-bottom: 0.5vh;
+}
+
+.call-doctor-home-go {
+  height: 46.5vh;
+  margin-left: -15px;
+  background-color: #7ce4e9; 
+  margin-right: -15px;
+  margin-top: 0.5vh;
+}
+
+.hospital-go-image {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.hospital-go-image-master {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+
+}
+
+.hospital-go-text {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  text-decoration: none;
+}

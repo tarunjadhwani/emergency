@@ -1,0 +1,143 @@
+$res-mobile-first   : true;         /* False doesn't work correctly, needs some work */
+$res-use-em         : false;
+
+$break-xs           : 320px;        /* Extra Small Devices, Phones */
+$break-sm           : 480px;        /* Small Devices, Tablets */
+$break-md           : 992px;        /* Medium Devices, Desktops */
+$break-lg           : 1280px;       /* Large Devices, Wide Screens */
+
+// Helper Functions
+
+@function em-calc($px, $base: 16px) {
+  @return ($px / $base) * 1em;
+}
+
+@function em($px) {
+  @if $res-use-em {
+    @return em-calc($px);
+  } @else {
+    @return $px;
+  }
+}
+
+// ***************************
+
+
+// Helper mixins
+
+@mixin from($min-value) {
+  @media only screen and (min-width: em($min-value)){
+    @content;
+  }
+}
+
+@mixin to($max-value) {
+  @media only screen and (max-width: em($max-value)){
+    @content;
+  }
+}
+
+@mixin between($min-value, $max-value) {
+  @media only screen and (min-width: em($min-value+1)) and (max-width: em($max-value)){
+    @content;
+  }
+}
+
+// ************************
+
+
+$breakpoint-names : mobile tablet desktop wide;
+// $breakpoints       : #{$break-xs} #{$break-sm} #{$break-md} #{$break-lg};
+$breakpoints       : 480px 768px 992px 1280px;    // Doesn't seem correct to define widths again, could use the one's defined above
+
+
+@mixin respond-to($device) {
+
+  $i : index($breakpoint-names, $device);
+
+  @if $i {
+
+    $breakpoint-value : nth($breakpoints, $i);
+
+    @if $res-mobile-first {
+      $_temp : if($i == 1, 0px , $breakpoint-value );
+      @include from( $_temp ) {
+        @content;
+      }
+    } @else {
+      @include to( $breakpoint-value ) {
+        @content;
+      }
+    }
+
+  }
+
+  @else {
+    @error "The responsive mixin does not support device #{$device}.";
+  }
+
+}
+
+@mixin retina {
+  @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+@mixin print {
+  @media print {
+    @content;
+  }
+}
+
+
+
+// -------------------------
+// Usage *******************
+// -------------------------
+
+.selector {
+
+  // Styles for mobile devices
+  @include respond-to(mobile) {
+    background: #FFF;
+  }
+
+  // Styles for tablet devices
+  @include respond-to(tablet) {
+    background: #FFF;
+  }
+
+  // Styles for wide-screen devices
+  @include respond-to(wide) {
+    background: #FFF;
+  }
+
+
+  // Styles for desktop devices
+  @include respond-to(desktop) {
+    background: #FFF;
+  }
+
+
+  // Styles for custom screen size : e.g. upto 700px
+  @include to(700px) {
+    background: red;
+  }
+
+  // Styles for custom screen size : e.g. from 700px onwards  
+  @include from(700px) {
+    background: red;
+  }
+
+  // Styles for custom screen size : e.g. from 100px onwards upto 700px
+  @include between(100px, 700px) {
+    background: red;
+  }
+}
