@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911131352) do
+ActiveRecord::Schema.define(version: 20150911132851) do
 
   create_table "ambulances", force: :cascade do |t|
     t.string   "vendor_name",         limit: 255
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 20150911131352) do
   create_table "ambulances_requests", id: false, force: :cascade do |t|
     t.integer "ambulance_id", limit: 4
     t.integer "request_id",   limit: 4
+  end
+
+  create_table "diseases", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "diseases_requests", force: :cascade do |t|
+    t.integer "disease_id", limit: 4
+    t.integer "request_id", limit: 4
   end
 
   create_table "requests", force: :cascade do |t|
@@ -43,6 +54,11 @@ ActiveRecord::Schema.define(version: 20150911131352) do
   add_index "requests", ["ambulance_id"], name: "index_requests_on_ambulance_id", using: :btree
   add_index "requests", ["doctor_id"], name: "index_requests_on_doctor_id", using: :btree
   add_index "requests", ["hospital_id"], name: "index_requests_on_hospital_id", using: :btree
+
+  create_table "requests_symptoms", id: false, force: :cascade do |t|
+    t.integer "symptom_id", limit: 4
+    t.integer "request_id", limit: 4
+  end
 
   create_table "symptoms", force: :cascade do |t|
     t.string   "name",       limit: 255
