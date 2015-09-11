@@ -1,4 +1,4 @@
-class Admin::SpecialitiesController < ApplicationController
+class Admin::SpecialitiesController < AdminController
   before_action :set_admin_speciality, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/specialities
@@ -54,6 +54,6 @@ class Admin::SpecialitiesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def admin_speciality_params
-      params.require(speciality).permit(:name, :description)
+      params[:speciality].permit(:name, :description)
     end
 end
