@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Description:
+  = @precaution.description
+%p
+  %b Video url:
+  = @precaution.video_url
+
+= link_to 'Edit', edit_admin_precaution_path(@precaution)
+\|
+= link_to 'Back', admin_precautions_path

@@ -1,0 +1,2 @@
+module Admin::PrecautionsHelper
+end
