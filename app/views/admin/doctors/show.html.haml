@@ -1,0 +1,29 @@
+- content_for :title, @admin_doctor.name
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      %strong= @admin_doctor.name
+  .panel-body
+    %table.table.table-hover
+      %tbody
+        %tr
+          %td.col-xs-3
+            %strong Mobile
+          %td.col-xs-9= @admin_doctor.mobile
+        %tr
+          %td
+            %strong Address
+          %td= @admin_doctor.address
+        %tr
+          %td
+            %strong # of Recommendations
+          %td= @admin_doctor.recommendations
+        %tr
+          %td
+            %strong Type
+          %td= @admin_doctor.doctor_type
+
+= link_to 'Edit', edit_admin_doctor_path(@admin_doctor)
+\|
+= link_to 'Back', admin_doctors_path

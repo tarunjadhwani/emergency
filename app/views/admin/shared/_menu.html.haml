@@ -1,0 +1,24 @@
+%nav.navbar.navbar-default
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "#"} Emergency App
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li{ :class => ("active" if controller?("admin/ambulances")) }
+          %a{:href => admin_ambulances_path } Ambulances
+        %li{ :class => ("active" if controller?("admin/diseases")) }
+          %a{:href => admin_diseases_path } Diseases
+        %li{ :class => ("active" if controller?("admin/precautions")) }
+          %a{:href => admin_precautions_path } Precautions
+        %li{ :class => ("active" if controller?("admin/requests")) }
+          %a{:href => admin_requests_path } Requests
+        %li{ :class => ("active" if controller?("admin/symptoms")) }
+          %a{:href => admin_symptoms_path } Symptoms
+  / /.container-fluid

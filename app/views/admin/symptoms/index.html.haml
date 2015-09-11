@@ -1,0 +1,21 @@
+%h1 Listing symptoms
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @symptoms.each do |symptom|
+      %tr
+        %td= symptom.name
+        %td= link_to 'Show', [:admin, symptom]
+        %td= link_to 'Edit', edit_admin_symptom_path(symptom)
+        %td= link_to 'Destroy', [:admin, symptom], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Symptom', new_admin_symptom_path

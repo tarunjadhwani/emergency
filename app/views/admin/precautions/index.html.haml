@@ -1,0 +1,23 @@
+%h1 Listing precautions
+
+%table
+  %thead
+    %tr
+      %th Description
+      %th Video url
+      %th
+      %th
+      %th
+
+  %tbody
+    - @precautions.each do |precaution|
+      %tr
+        %td= precaution.description
+        %td= precaution.video_url
+        %td= link_to 'Show', [:admin, precaution]
+        %td= link_to 'Edit', edit_admin_precaution_path(precaution)
+        %td= link_to 'Destroy', [:admin, precaution], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Precaution', new_admin_precaution_path

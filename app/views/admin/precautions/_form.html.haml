@@ -1,0 +1,9 @@
+= simple_form_for([:admin, @precaution]) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :description
+    = f.input :video_url
+
+  .form-actions
+    = f.button :submit

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911113549) do
+ActiveRecord::Schema.define(version: 20150911133710) do
 
   create_table "ambulances", force: :cascade do |t|
     t.string   "vendor_name",         limit: 255
@@ -21,6 +21,42 @@ ActiveRecord::Schema.define(version: 20150911113549) do
     t.string   "type",                limit: 255
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+  end
+
+  create_table "ambulances_requests", id: false, force: :cascade do |t|
+    t.integer "ambulance_id", limit: 4
+    t.integer "request_id",   limit: 4
+  end
+
+  create_table "diseases", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "diseases_requests", force: :cascade do |t|
+    t.integer "disease_id", limit: 4
+    t.integer "request_id", limit: 4
+  end
+
+  create_table "doctors", force: :cascade do |t|
+    t.string   "name",            limit: 255,                            default: "", null: false
+    t.string   "mobile",          limit: 255,                            default: "", null: false
+    t.text     "address",         limit: 65535
+    t.integer  "recommendations", limit: 4
+    t.decimal  "lat",                           precision: 10, scale: 6
+    t.decimal  "long",                          precision: 10, scale: 6
+    t.string   "type",            limit: 255
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
+  end
+
+  create_table "precautions", force: :cascade do |t|
+    t.text     "description", limit: 65535
+    t.string   "video_url",   limit: 255
+    t.integer  "image_id",    limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "requests", force: :cascade do |t|
@@ -38,6 +74,17 @@ ActiveRecord::Schema.define(version: 20150911113549) do
   add_index "requests", ["ambulance_id"], name: "index_requests_on_ambulance_id", using: :btree
   add_index "requests", ["doctor_id"], name: "index_requests_on_doctor_id", using: :btree
   add_index "requests", ["hospital_id"], name: "index_requests_on_hospital_id", using: :btree
+
+  create_table "requests_symptoms", id: false, force: :cascade do |t|
+    t.integer "symptom_id", limit: 4
+    t.integer "request_id", limit: 4
+  end
+
+  create_table "symptoms", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
