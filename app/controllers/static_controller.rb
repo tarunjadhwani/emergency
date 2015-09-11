@@ -7,4 +7,7 @@ class StaticController < ApplicationController
 
   def hospitalNextStep
   end
+
+  def doctorAddress
+  end
 end
