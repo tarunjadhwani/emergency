@@ -1,0 +1,42 @@
+- content_for :title, 'Listing services'
+
+%h3 Listing services
+
+.row
+  .col-xs-12
+    .col-xs-2
+      %span.badge.listing-result
+        = pluralize(@admin_services.total_count, 'Service')
+    .col-xs-8
+      = search_form_for([:admin, @search_admin_services]) do |f|
+        .input-group
+          = f.search_field :name_cont, placeholder: 'Search by name ...', type: 'search', value: "#{params[:q][:name_cont] rescue nil}", class: "form-control margin-top-10"
+          %span.input-group-btn
+            = f.submit class: "btn btn-warning" do
+              %span.glyphicon.glyphicon-search
+
+    .col-xs-2
+      = link_to 'Create Service', new_admin_service_path, class: "btn btn-primary btn-raised pull-right no-margin-top"
+
+%br
+
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th #
+        %th Name
+        %th Actions
+    %tbody
+      - @admin_services.each_with_index do |service, i|
+        %tr
+          %th{scope: 'row'}
+            = i + 1
+          %td= link_to service.name, [:admin, service]
+          %td
+            = link_to 'Edit', edit_admin_service_path(service)
+            = link_to 'Destroy', [:admin, service], method: :delete, data: { confirm: 'Are you sure?' }
+
+  .text-center
+    = paginate @admin_services
+

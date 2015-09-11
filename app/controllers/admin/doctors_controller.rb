@@ -25,7 +25,7 @@ class Admin::DoctorsController < AdminController
     @admin_doctor = Doctor.new(admin_doctor_params)
 
     if @admin_doctor.save
-      redirect_to @admin_doctor, notice: 'Doctor was successfully created.'
+      redirect_to [:admin, @admin_doctor], notice: 'Doctor was successfully created.'
     else
       render :new
     end
@@ -34,7 +34,7 @@ class Admin::DoctorsController < AdminController
   # PATCH/PUT /admin/doctors/1
   def update
     if @admin_doctor.update(admin_doctor_params)
-      redirect_to @admin_doctor, notice: 'Doctor was successfully updated.'
+      redirect_to [:admin, @admin_doctor], notice: 'Doctor was successfully updated.'
     else
       render :edit
     end
@@ -54,6 +54,6 @@ class Admin::DoctorsController < AdminController
 
     # Only allow a trusted parameter "white list" through.
     def admin_doctor_params
-      params[:admin_doctor]
+      params.require(:doctor).permit(:name, :mobile, :address, :recommendations, :lat, :long, :type)
     end
 end

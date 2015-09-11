@@ -25,7 +25,7 @@ class Admin::HospitalsController < ApplicationController
     @admin_hospital = Hospital.new(admin_hospital_params)
 
     if @admin_hospital.save
-      redirect_to @admin_hospital, notice: 'Hospital was successfully created.'
+      redirect_to [:admin, @admin_hospital], notice: 'Hospital was successfully created.'
     else
       render :new
     end
@@ -34,7 +34,7 @@ class Admin::HospitalsController < ApplicationController
   # PATCH/PUT /admin/hospitals/1
   def update
     if @admin_hospital.update(admin_hospital_params)
-      redirect_to @admin_hospital, notice: 'Hospital was successfully updated.'
+      redirect_to [:admin, @admin_hospital], notice: 'Hospital was successfully updated.'
     else
       render :edit
     end
@@ -54,6 +54,6 @@ class Admin::HospitalsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def admin_hospital_params
-      params[:admin_hospital]
+      params.require(:hospital).permit(:name, :phone, :address, :contact_name, :rating, :lat, :long)
     end
 end

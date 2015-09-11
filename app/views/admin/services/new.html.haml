@@ -1,0 +1,11 @@
+- content_for :title, 'New service'
+
+%h3 New service
+
+.well
+  = render 'form'
+
+= link_to 'Back', admin_doctors_path
+
+:javascript
+  $("#new_service").validate();

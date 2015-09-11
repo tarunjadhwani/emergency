@@ -31,3 +31,5 @@ end
     ap hospital.errors.messages
   end
 end
+
+[]
