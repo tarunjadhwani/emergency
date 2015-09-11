@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911182428) do
+ActiveRecord::Schema.define(version: 20150911230359) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -97,8 +97,9 @@ ActiveRecord::Schema.define(version: 20150911182428) do
     t.integer  "ambulance_id", limit: 4
     t.integer  "hospital_id",  limit: 4
     t.integer  "doctor_id",    limit: 4
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.boolean  "book",                       default: false, null: false
   end
 
   add_index "requests", ["ambulance_id"], name: "index_requests_on_ambulance_id", using: :btree

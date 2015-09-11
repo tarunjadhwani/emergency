@@ -1,0 +1,50 @@
+.col-sm-12.col-xs-12
+  .select-home-page
+    %a.back-arrow{href: new_address_path(@request)}
+      %img{src: "/assets/back-arrow.png", class: "back-arrow-image"}
+    .select-box-text-back
+      Patient’s condition
+
+.col-sm-12.col-xs-12
+  .condition-text-wrapper
+    .condtion-text
+      * Please fill all the symptoms as we can track the disease as accurate as possible.
+    %form{action: "patient-condition"}
+      .condition-input-field
+        %input{type: "text", class: "condition-patient form-control"}
+    .option-text
+      OR
+
+.row
+  .total-wrapper
+    .col-sm-12.col-xs-12
+      .condition-feature-wrapper
+        .row
+          .col-sm-6.col-xs-6
+            .disease-feature-image-wrapper
+              %img{src: "http://placehold.it/100", class: "disease-feature-image"}
+            .disease-feature-text
+              HEART ATTACK
+          .col-sm-6.col-xs-6
+            .disease-feature-image-wrapper
+              %img{src: "http://placehold.it/100", class: "disease-feature-image"}
+            .disease-feature-text
+              BRAIN STROKE
+          .col-sm-6.col-xs-6
+            .disease-feature-image-wrapper
+              %img{src: "http://placehold.it/100", class: "disease-feature-image"}
+            .disease-feature-text
+              ACCIDENT
+          .col-sm-6.col-xs-6
+            .disease-feature-image-wrapper
+              %img{src: "http://placehold.it/100", class: "disease-feature-image"}
+            .disease-feature-text
+              ACCIDENT
+
+
+
+
+
+
+
+
