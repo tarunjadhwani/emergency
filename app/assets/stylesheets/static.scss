@@ -116,3 +116,71 @@ body {
   font-family: 'Roboto', sans-serif;
   text-decoration: none;
 }
+
+.phone-number-patient {
+}
+
+.phone-input-field {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.phone-description-text {
+  width: 80%;
+  margin: 0 auto;
+  color: #989898;
+  padding-top: 30px;
+}
+
+.phone-info-wrapper {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 50px;
+  -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.5);
+  border-radius: 2px;
+  background-color: #fff;
+}
+
+.phone-submit-button-wrapper {
+  padding-top: 20px;
+  margin: 0 auto;
+}
+
+.btn-phone-submit {
+  width: 60%;
+  margin-left: 20%;
+  background-color: #5b8eff !important;
+}
+
+.checkbox {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 30px;
+  label {
+    color: #5b8eff;
+    margin-left: 10px;
+  }
+}
+
+.checkbox-material {
+  left: -10px;
+}
+
+.checkbox input[type=checkbox]:checked + .checkbox-material .check, .checkbox-default input[type=checkbox]:checked + .checkbox-material .check {
+  color: #5b8eff;
+}
+
+.checkbox input[type=checkbox]:checked + .checkbox-material .check:before, .checkbox-default input[type=checkbox]:checked + .checkbox-material .check:before {
+  color: #5b8eff;
+}
+
+.option-text {
+  width: 80%;
+  margin: 0 auto;
+  color: #989898;
+  padding-top: 30px;
+  text-align: center;
+}

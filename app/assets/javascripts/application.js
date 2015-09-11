@@ -11,6 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap.min
+//= require ripples.min
+//= require material.min
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.validate.min

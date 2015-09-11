@@ -1,25 +1,17 @@
 .col-sm-12.col-xs-12
   .select-home-page
-    .select-box-text
-      Select either of the options
+    %a.back-arrow{:href => "/"}
+      %img{:src => "/assets/back-arrow.png", :class => "back-arrow-image"}
+    .select-box-text-back
+      Your details
 
 
 .col-sm-12.col-xs-12
-  %a.link-block{:href => "/next"}
-    .hospital-go
-      .hospital-master
-        .hospital-go-image-master 
-          %img{:src => "/assets/hospital.png", :class => "hospital-go-image"}
-        .hospital-go-text
-          I need an ambulance 
-
-
-.col-sm-12.col-xs-12
-  %a.link-block{:href => "/next"}
-    .call-doctor-home-go
-      .hospital-master
-        .hospital-go-image-master 
-          %img{:src => "/assets/doctor-home.png", :class => "hospital-go-image"}
-        .hospital-go-text
-          I have my own vehicle
-        
+  .phone-info-wrapper
+    %form{:action => "fill-address"}
+      .phone-description-text
+        Provide your mobile number so that we can reach you
+      .phone-input-field
+        %input{:type => "text", :class => "phone-number-patient form-control", :id => "inputEmail"}
+      .phone-submit-button-wrapper
+        %input{:type => "submit", :class => "btn btn-success btn-phone-submit"}

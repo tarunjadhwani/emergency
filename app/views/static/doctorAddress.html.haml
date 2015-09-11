@@ -1,0 +1,47 @@
+.col-sm-12.col-xs-12
+  .select-home-page
+    %a.back-arrow{:href => "/"}
+      %img{:src => "/assets/back-arrow.png", :class => "back-arrow-image"}
+    .select-box-text-back
+      Your details
+
+
+.col-sm-12.col-xs-12
+  .phone-info-wrapper
+    .phone-description-text
+      Provide your mobile number so that we can reach you
+    .current-location-select
+      .checkbox
+        %label
+          %input{:type => "checkbox", :class => "checkbox-select", :value => "checked"}/
+          %span.checkbox-material
+            %span.check
+          Use Current Location
+    .option-text 
+      OR
+    .phone-input-field
+      %input{:type => "text", :class => "phone-number-patient form-control", :id => "inputEmail"}
+    .phone-submit-button-wrapper
+      %input{:type => "submit", :class => "btn btn-success btn-phone-submit"}
+
+
+:javascript
+  var x = document.getElementById("demo");
+  $('.checkbox-select').change(function(){
+    if($('.checkbox-select:checked').is(':checked')) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } 
+      else { 
+
+      }
+    }
+    
+  });
+
+  function showPosition(position) {
+  }
+
+
+
+  
