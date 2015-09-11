@@ -17,7 +17,8 @@
           = f.input :address, input_html: {class: "form-control"}
 
   .form-actions
-    = f.button :submit
+    = link_to "Back", admin_doctors_path, class: "btn btn-default"
+    = f.button :submit, class: "btn-primary"
 
 :javascript
   $("#new_doctor").validate();

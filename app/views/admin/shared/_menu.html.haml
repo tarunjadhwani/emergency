@@ -19,6 +19,8 @@
           %a{:href => admin_precautions_path } Precautions
         %li{ :class => ("active" if controller?("admin/requests")) }
           %a{:href => admin_requests_path } Requests
+        %li{ :class => ("active" if controller?("admin/doctors")) }
+          %a{:href => admin_doctors_path } Doctors
         %li{ :class => ("active" if controller?("admin/symptoms")) }
           %a{:href => admin_symptoms_path } Symptoms
       %ul.nav.navbar-nav.navbar-right
