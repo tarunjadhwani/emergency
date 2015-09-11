@@ -4,7 +4,8 @@ class Admin::RequestsController < AdminController
   # GET /requests
   # GET /requests.json
   def index
-    @requests = Request.all
+    @search_requests = Request.order(created_at: :desc).ransack(params[:q])
+    @requests = @search_requests.result(distinct: true).page(params[:page])
   end
 
   # GET /requests/1
@@ -69,6 +70,6 @@ class Admin::RequestsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
-      params[:request]
+      params[:request].permit(:mobile, :address)
     end
 end

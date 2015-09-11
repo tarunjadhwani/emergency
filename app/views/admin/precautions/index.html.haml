@@ -1,23 +1,46 @@
-%h1 Listing precautions
+- content_for :title, 'Listing precautions'
 
-%table
-  %thead
-    %tr
-      %th Description
-      %th Video url
-      %th
-      %th
-      %th
+%h3 Listing precautions
 
-  %tbody
-    - @precautions.each do |precaution|
-      %tr
-        %td= precaution.description
-        %td= precaution.video_url
-        %td= link_to 'Show', [:admin, precaution]
-        %td= link_to 'Edit', edit_admin_precaution_path(precaution)
-        %td= link_to 'Destroy', [:admin, precaution], :method => :delete, :data => { :confirm => 'Are you sure?' }
+.row
+  .col-xs-12
+    .col-xs-2
+      %span.badge.listing-result
+        = pluralize(@precautions.total_count, 'Precautions')
+    .col-xs-8
+      = search_form_for([:admin, @search_precautions]) do |f|
+        .input-group
+          = f.search_field :description_or_video_url_cont, placeholder: 'Search by name or address ...', type: 'search', value: "#{params[:q][:description_or_video_url_cont] rescue nil}", class: "form-control"
+          %span.input-group-btn
+            = f.submit class: "btn btn-warning" do
+              %span.glyphicon.glyphicon-search
+
+    .col-xs-2
+      = link_to 'Create Precautions', new_admin_precaution_path, class: "btn btn-primary btn-raised pull-right no-margin-top"
 
 %br
 
-= link_to 'New Precaution', new_admin_precaution_path
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th #
+        %th Description
+        %th Video Link
+        %th Actions
+    %tbody
+      - @precautions.each_with_index do |precaution, i|
+        %tr
+          %th{scope: 'row'}
+            = i + 1
+          %td= link_to precaution.description, [:admin, precaution]
+          %td= precaution.video_url
+          %td
+            = link_to 'Edit', edit_admin_precaution_path(precaution)
+            = link_to 'Destroy', [:admin, precaution], method: :delete, data: { confirm: 'Are you sure?' }
+
+  .text-center
+    = paginate @precautions
+
+
+

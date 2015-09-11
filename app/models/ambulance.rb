@@ -13,5 +13,6 @@
 #
 
 class Ambulance < ActiveRecord::Base
+  validates_presence_of :vendor_name, :registration_number, :driver_name, :mobile
   has_and_belongs_to_many :requests
 end

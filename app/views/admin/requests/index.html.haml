@@ -1,19 +1,50 @@
-%h1 Listing requests
+- content_for :title, 'Listing requests'
 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
+%h3 Listing requests
 
-  %tbody
-    - @requests.each do |request|
-      %tr
-        %td= link_to 'Show', [:admin, request]
-        %td= link_to 'Edit', edit_admin_request_path(request)
-        %td= link_to 'Destroy', [:admin, request], :method => :delete, :data => { :confirm => 'Are you sure?' }
+.row
+  .col-xs-12
+    .col-xs-2
+      %span.badge.listing-result
+        = pluralize(@requests.total_count, 'Request')
+    .col-xs-8
+      = search_form_for([:admin, @search_requests]) do |f|
+        .input-group
+          = f.search_field :mobile_or_address_or_lat_or_long_cont, placeholder: 'Search by name or address ...', type: 'search', value: "#{params[:q][:mobile_or_address_or_lat_or_long_cont] rescue nil}", class: "form-control"
+          %span.input-group-btn
+            = f.submit class: "btn btn-warning" do
+              %span.glyphicon.glyphicon-search
+
+    .col-xs-2
+      = link_to 'Create Request', new_admin_request_path, class: "btn btn-primary btn-raised pull-right no-margin-top"
 
 %br
 
-= link_to 'New Request', new_admin_request_path
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th #
+        %th Mobile
+        %th Address
+        %th Lat
+        %th Long
+        %th Actions
+    %tbody
+      - @requests.each_with_index do |request, i|
+        %tr
+          %th{scope: 'row'}
+            = i + 1
+          %td= link_to request.mobile, [:admin, request]
+          %td= request.address
+          %td= request.lat
+          %td= request.long
+          %td
+            = link_to 'Edit', edit_admin_request_path(request)
+            = link_to 'Destroy', [:admin, request], method: :delete, data: { confirm: 'Are you sure?' }
+
+  .text-center
+    = paginate @requests
+
+
+

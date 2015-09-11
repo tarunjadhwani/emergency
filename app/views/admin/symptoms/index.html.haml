@@ -1,21 +1,44 @@
-%h1 Listing symptoms
+- content_for :title, 'Listing symptoms'
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
-      %th
+%h3 Listing symptoms
 
-  %tbody
-    - @symptoms.each do |symptom|
-      %tr
-        %td= symptom.name
-        %td= link_to 'Show', [:admin, symptom]
-        %td= link_to 'Edit', edit_admin_symptom_path(symptom)
-        %td= link_to 'Destroy', [:admin, symptom], :method => :delete, :data => { :confirm => 'Are you sure?' }
+.row
+  .col-xs-12
+    .col-xs-2
+      %span.badge.listing-result
+        = pluralize(@symptoms.total_count, 'Symptom')
+    .col-xs-8
+      = search_form_for([:admin, @search_symptoms]) do |f|
+        .input-group
+          = f.search_field :name_cont, placeholder: 'Search by name or address ...', type: 'search', value: "#{params[:q][:name_cont] rescue nil}", class: "form-control"
+          %span.input-group-btn
+            = f.submit class: "btn btn-warning" do
+              %span.glyphicon.glyphicon-search
+
+    .col-xs-2
+      = link_to 'Create Symptom', new_admin_symptom_path, class: "btn btn-primary btn-raised pull-right no-margin-top"
 
 %br
 
-= link_to 'New Symptom', new_admin_symptom_path
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th #
+        %th Name
+        %th Actions
+    %tbody
+      - @symptoms.each_with_index do |symptom, i|
+        %tr
+          %th{scope: 'row'}
+            = i + 1
+          %td= link_to symptom.name, [:admin, symptom]
+          %td
+            = link_to 'Edit', edit_admin_symptom_path(symptom)
+            = link_to 'Destroy', [:admin, symptom], method: :delete, data: { confirm: 'Are you sure?' }
+
+  .text-center
+    = paginate @symptoms
+
+
+

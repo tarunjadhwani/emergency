@@ -2,6 +2,25 @@
   = f.error_notification
 
   .form-inputs
+    .row
+      .col-xs-12
+        .form-group
+          = f.input :vendor_name, input_html: {class: "form-control"}
+    .row
+      .col-xs-12
+        .form-group
+          = f.input :registration_number, input_html: {class: "form-control"}
+
+    .row
+      .col-xs-12
+        .form-group
+          = f.input :mobile, input_html: {class: "form-control", number: true}
+
+    .row
+      .col-xs-12
+        .form-group
+          = f.input :driver_name, input_html: {class: "form-control"}
 
   .form-actions
-    = f.button :submit
+    = link_to "Cancel", admin_ambulances_path, class: "btn btn-default"
+    = f.button :submit, class: "btn-primary"
