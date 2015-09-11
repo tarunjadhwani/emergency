@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'static#index'
 
   get 'next-doctor' => 'static#doctorNextStep'
   get 'next-hospital' => 'static#hospitalNextStep'
   get 'fill-address' => 'static#doctorAddress'
 
-  devise_for :users
   namespace :admin do
     resources :requests
     resources :doctors

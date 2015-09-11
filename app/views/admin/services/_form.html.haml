@@ -12,4 +12,5 @@
           = f.input :description, input_html: {class: "form-control", rows: 4}
 
   .form-actions
-    = f.button :submit
+    = link_to "Back", admin_services_path, class: "btn btn-default"
+    = f.button :submit, class: "btn-primary"

@@ -22,4 +22,5 @@
           = f.input :contact_name, input_html: {class: "form-control"}
 
   .form-actions
-    = f.button :submit
+    = link_to "Back", admin_hospitals_path, class: "btn btn-default"
+    = f.button :submit, class: "btn-primary"
