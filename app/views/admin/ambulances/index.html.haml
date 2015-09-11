@@ -1,0 +1,19 @@
+%h1 Listing ambulances
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @ambulances.each do |ambulance|
+      %tr
+        %td= link_to 'Show', [:admin, ambulance]
+        %td= link_to 'Edit', edit_admin_ambulance_path(ambulance)
+        %td= link_to 'Destroy', [:admin, ambulance], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Ambulance', new_admin_ambulance_path

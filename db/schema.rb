@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911103326) do
+ActiveRecord::Schema.define(version: 20150911113549) do
+
+  create_table "ambulances", force: :cascade do |t|
+    t.string   "vendor_name",         limit: 255
+    t.string   "registration_number", limit: 255
+    t.string   "mobile",              limit: 255
+    t.string   "driver_name",         limit: 255
+    t.string   "type",                limit: 255
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
 
   create_table "requests", force: :cascade do |t|
     t.string   "mobile",       limit: 255

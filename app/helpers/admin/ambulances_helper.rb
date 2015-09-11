@@ -1,0 +1,2 @@
+module Admin::AmbulancesHelper
+end
