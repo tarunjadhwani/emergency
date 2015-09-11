@@ -36,7 +36,6 @@ group :development, :test do
   gem 'byebug'
 end
 
-gem 'bootstrap-sass'
 gem 'devise'
 gem 'haml-rails'
 gem 'mysql2', '~> 0.3.18'
