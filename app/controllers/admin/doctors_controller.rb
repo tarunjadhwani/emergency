@@ -1,4 +1,4 @@
-class Admin::DoctorsController < ApplicationController
+class Admin::DoctorsController < AdminController
   before_action :set_admin_doctor, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/doctors
