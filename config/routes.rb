@@ -19,5 +19,6 @@ Rails.application.routes.draw do
     resources :precautions
     resources :hospitals
     resources :services
+    resources :specialities
   end
 end

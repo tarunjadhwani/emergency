@@ -22,9 +22,11 @@
         %li{ class: ("active" if controller?("admin/doctors")) }
           %a{href: admin_doctors_path } Doctors
         %li{ class: ("active" if controller?("admin/hospitals")) }
-          %a{href: admin_doctors_path } Hospitals
+          %a{href: admin_hospitals_path } Hospitals
         %li{ class: ("active" if controller?("admin/services")) }
-          %a{href: admin_doctors_path } Services
+          %a{href: admin_services_path } Services
+        %li{ class: ("active" if controller?("admin/specialities")) }
+          %a{href: admin_specialities_path } Specialities
         %li{ class: ("active" if controller?("admin/symptoms")) }
           %a{href: admin_symptoms_path } Symptoms
       %ul.nav.navbar-nav.navbar-right

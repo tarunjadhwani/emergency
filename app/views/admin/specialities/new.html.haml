@@ -1,0 +1,9 @@
+- content_for :title, 'New speciality'
+
+%h3 New speciality
+
+.well
+  = render 'form'
+
+:javascript
+  $("#new_speciality").validate();
