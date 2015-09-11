@@ -1,4 +1,4 @@
-class Admin::AmbulancesController < ApplicationController
+class Admin::AmbulancesController < AdminController
   before_action :set_ambulance, only: [:show, :edit, :update, :destroy]
 
   # GET /ambulances
@@ -42,7 +42,7 @@ class Admin::AmbulancesController < ApplicationController
   def update
     respond_to do |format|
       if @ambulance.update(ambulance_params)
-        format.html { redirect_to @ambulance, notice: 'Ambulance was successfully updated.' }
+        format.html { redirect_to [:admin, @ambulance], notice: 'Ambulance was successfully updated.' }
         format.json { render :show, status: :ok, location: @ambulance }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class Admin::AmbulancesController < ApplicationController
   def destroy
     @ambulance.destroy
     respond_to do |format|
-      format.html { redirect_to ambulances_url, notice: 'Ambulance was successfully destroyed.' }
+      format.html { redirect_to [:admin, ambulances_url], notice: 'Ambulance was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -10,9 +10,9 @@
   %tbody
     - @requests.each do |request|
       %tr
-        %td= link_to 'Show', request
+        %td= link_to 'Show', [:admin, request]
         %td= link_to 'Edit', edit_admin_request_path(request)
-        %td= link_to 'Destroy', request, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to 'Destroy', [:admin, request], :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

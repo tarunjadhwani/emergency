@@ -13,5 +13,8 @@ Rails.application.routes.draw do
     resources :cpr_experts, controller: 'doctors'
     resources :resident_doctors, controller: 'doctors'
     resources :er_doctors, controller: 'doctors'
+    resources :symptoms
+    resources :diseases
+    resources :precautions
   end
 end

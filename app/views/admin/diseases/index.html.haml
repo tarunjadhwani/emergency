@@ -1,0 +1,21 @@
+%h1 Listing diseases
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @diseases.each do |disease|
+      %tr
+        %td= disease.name
+        %td= link_to 'Show', [:admin, disease]
+        %td= link_to 'Edit', edit_admin_disease_path(disease)
+        %td= link_to 'Destroy', [:admin, disease], :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Disease', new_admin_disease_path
