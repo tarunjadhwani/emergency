@@ -63,5 +63,6 @@ group :development do
   gem 'quiet_assets'
   gem 'rails_apps_pages'
   gem 'rails_layout'
+  gem 'annotate'
 end
 
