@@ -62,6 +62,8 @@ group :development do
   gem 'quiet_assets'
   gem 'rails_apps_pages'
   gem 'rails_layout'
+  # For models only: annotate --exclude tests,fixtures,factories,serializers
+  # For routes only: annotate --routes
   gem 'annotate'
 end
 

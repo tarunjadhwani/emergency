@@ -1,0 +1,29 @@
+- content_for :title, @admin_hospital.name
+
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      %strong= @admin_hospital.name
+  .panel-body
+    %table.table.table-hover
+      %tbody
+        %tr
+          %td.col-xs-3
+            %strong Phone
+          %td.col-xs-9= @admin_hospital.phone
+        %tr
+          %td
+            %strong Address
+          %td= @admin_hospital.address
+        %tr
+          %td
+            %strong Contact Person
+          %td= @admin_hospital.contact_name
+        %tr
+          %td
+            %strong Rating
+          %td= @admin_hospital.rating
+
+= link_to 'Edit', edit_admin_hospital_path(@admin_hospital)
+\|
+= link_to 'Back', admin_hospitals_path
