@@ -49,7 +49,7 @@ end
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'haml-rails'
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.18'
 
 group :development do
   gem 'better_errors'
