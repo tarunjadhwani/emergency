@@ -23,6 +23,18 @@ ActiveRecord::Schema.define(version: 20150911113549) do
     t.datetime "updated_at",                      null: false
   end
 
+  create_table "doctors", force: :cascade do |t|
+    t.string   "name",            limit: 255,                            default: "", null: false
+    t.string   "mobile",          limit: 255,                            default: "", null: false
+    t.text     "address",         limit: 65535
+    t.integer  "recommendations", limit: 4
+    t.decimal  "lat",                           precision: 10, scale: 6
+    t.decimal  "long",                          precision: 10, scale: 6
+    t.string   "type",            limit: 255
+    t.datetime "created_at",                                                          null: false
+    t.datetime "updated_at",                                                          null: false
+  end
+
   create_table "requests", force: :cascade do |t|
     t.string   "mobile",       limit: 255
     t.text     "address",      limit: 65535

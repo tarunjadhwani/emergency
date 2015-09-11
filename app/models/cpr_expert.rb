@@ -1,0 +1,2 @@
+class CprExpert < Doctor
+end
