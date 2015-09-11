@@ -14,7 +14,7 @@
     .row
       .col-xs-12
         .form-group
-          = f.input :address, input_html: {class: "form-control"}
+          = f.input :address, input_html: {class: "form-control", rows: 4}
 
     .row
       .col-xs-12
@@ -22,7 +22,5 @@
           = f.input :contact_name, input_html: {class: "form-control"}
 
   .form-actions
-    = f.button :submit
-
-:javascript
-  $("#new_hospital").validate();
+    = link_to "Back", admin_hospitals_path, class: "btn btn-default"
+    = f.button :submit, class: "btn-primary"

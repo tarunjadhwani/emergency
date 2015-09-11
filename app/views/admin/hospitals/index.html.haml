@@ -10,7 +10,7 @@
     .col-xs-8
       = search_form_for([:admin, @search_admin_hospitals]) do |f|
         .input-group
-          = f.search_field :name_or_address_cont, placeholder: 'Search by name or address ...', type: 'search', value: "#{params[:q][:name_or_address_cont] rescue nil}", class: "form-control"
+          = f.search_field :name_or_address_cont, placeholder: 'Search by name or address ...', type: 'search', value: "#{params[:q][:name_or_address_cont] rescue nil}", class: "form-control margin-top-10"
           %span.input-group-btn
             = f.submit class: "btn btn-warning" do
               %span.glyphicon.glyphicon-search

@@ -1,0 +1,42 @@
+- content_for :title, 'Listing specialities'
+
+%h3 Listing specialities
+
+.row
+  .col-xs-12
+    .col-xs-2
+      %span.badge.listing-result
+        = pluralize(@admin_specialities.total_count, 'Speciality')
+    .col-xs-8
+      = search_form_for([:admin, @search_admin_specialities]) do |f|
+        .input-group
+          = f.search_field :name_cont, placeholder: 'Search by name ...', type: 'search', value: "#{params[:q][:name_cont] rescue nil}", class: "form-control margin-top-10"
+          %span.input-group-btn
+            = f.submit class: "btn btn-warning" do
+              %span.glyphicon.glyphicon-search
+
+    .col-xs-2
+      = link_to 'Create Speciality', new_admin_speciality_path, class: "btn btn-primary btn-raised pull-right no-margin-top"
+
+%br
+
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th #
+        %th Name
+        %th Actions
+    %tbody
+      - @admin_specialities.each_with_index do |speciality, i|
+        %tr
+          %th{scope: 'row'}
+            = i + 1
+          %td= link_to speciality.name, [:admin, speciality]
+          %td
+            = link_to 'Edit', edit_admin_speciality_path(speciality)
+            = link_to 'Destroy', [:admin, speciality], method: :delete, data: { confirm: 'Are you sure?' }
+
+  .text-center
+    = paginate @admin_specialities
+

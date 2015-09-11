@@ -1,0 +1,9 @@
+- content_for :title, 'New service'
+
+%h3 New service
+
+.well
+  = render 'form'
+
+:javascript
+  $("#new_service").validate();

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'static#index'
 
   get 'next-doctor' => 'static#doctorNextStep'
@@ -7,7 +8,6 @@ Rails.application.routes.draw do
   get 'patient-condition' => 'static#patientCondition'
 
 
-  devise_for :users
   namespace :admin do
     resources :requests
     resources :doctors
@@ -20,5 +20,7 @@ Rails.application.routes.draw do
     resources :diseases
     resources :precautions
     resources :hospitals
+    resources :services
+    resources :specialities
   end
 end
