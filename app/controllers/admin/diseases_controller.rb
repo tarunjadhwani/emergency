@@ -70,6 +70,6 @@ class Admin::DiseasesController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def disease_params
-      params.require(:disease).permit(:name)
+      params.require(:disease).permit(:name, symptom_ids: [])
     end
 end

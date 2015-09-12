@@ -33,6 +33,7 @@
           %th{scope: 'row'}
             = i + 1
           %td= link_to symptom.name, [:admin, symptom]
+          %td= symptom.diseases.map{|m| m.name}
           %td
             = link_to 'Edit', edit_admin_symptom_path(symptom)
             = link_to 'Destroy', [:admin, symptom], method: :delete, data: { confirm: 'Are you sure?' }

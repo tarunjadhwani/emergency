@@ -6,6 +6,10 @@
       .col-xs-12
         .form-group
           = f.input :name, input_html: {class: "form-control"}
+    .row
+      .col-xs-12
+        .form-group
+          = f.association :diseases, input_html: {class: "form_control select2"}
 
   .form-actions
     = link_to "Cancel", admin_symptoms_path, class: "btn btn-default"
