@@ -27,6 +27,7 @@
         %th #
         %th Name
         %th Symptoms
+        %th Precautions
         %th Actions
     %tbody
       - @diseases.each_with_index do |disease, i|
@@ -35,6 +36,7 @@
             = i + 1
           %td= link_to disease.name, [:admin, disease]
           %td= disease.symptoms.map{|m| m.name}
+          %td= disease.precautions.map{|m| m.description}
           %td
             = link_to 'Edit', edit_admin_disease_path(disease)
             = link_to 'Destroy', [:admin, disease], method: :delete, data: { confirm: 'Are you sure?' }

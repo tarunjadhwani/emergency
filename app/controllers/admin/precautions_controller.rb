@@ -70,6 +70,6 @@ class Admin::PrecautionsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def precaution_params
-      params.require(:precaution).permit(:description, :video_url)
+      params.require(:precaution).permit(:description, :video_url, disease_ids: [])
     end
 end

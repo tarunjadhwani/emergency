@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   get 'patient-condition' => 'static#patientCondition'
   get '/symptom_options', to: 'static#symptom_options'
 
-
   namespace :admin do
     resources :requests
     resources :doctors

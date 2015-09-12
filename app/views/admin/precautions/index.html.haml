@@ -25,7 +25,8 @@
     %thead
       %tr
         %th #
-        %th Description
+        %th Disease
+        %th Precuation
         %th Video Link
         %th Actions
     %tbody
@@ -33,6 +34,7 @@
         %tr
           %th{scope: 'row'}
             = i + 1
+          %th= precaution.diseases.map{|m| m.name}
           %td= link_to precaution.description, [:admin, precaution]
           %td= precaution.video_url
           %td
