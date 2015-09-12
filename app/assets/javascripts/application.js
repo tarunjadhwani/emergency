@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require select2
 //= require bootstrap.min
 //= require ripples.min
 //= require material.min
