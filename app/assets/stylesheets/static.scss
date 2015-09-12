@@ -50,6 +50,27 @@ body {
   margin-left: 10px;
   display: inline-block;
 }
+#seconds {
+  color: white;
+  font-size: 1.1rem;
+  line-height: 9vh;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+#dots {
+  color: white;
+  font-size: 1.1rem;
+  line-height: 9vh;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+#minutes {
+  color: white;
+  font-size: 1.1rem;
+  line-height: 9vh;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
 
 .back-arrow {
   display: inline-block;
@@ -57,6 +78,17 @@ body {
 }
 
 .back-arrow-image {
+  margin-top: -6px;
+}
+
+.timer {
+  display: inline-block;
+  position: absolute;
+  top: 0px;
+  right: 25px;
+}
+
+.timer-image {
   margin-top: -6px;
 }
 

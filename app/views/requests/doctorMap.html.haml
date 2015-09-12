@@ -4,14 +4,31 @@
       %img{:src => "/assets/back-arrow.png", :class => "back-arrow-image"}
     .select-box-text-back
       Getting Connected
+    .timer
+      %img{src: "/assets/timer.png", class: "timer-image"}
+      %span#minutes
+        00
+      %span#dots
+        = ":"
+      %span#seconds
 
 .row
   .col-md-12.col-xs-12
     #map{:style => "height: 100vh;"}
 
+#myModal.modal{sytle: "margin: 0 auto;"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        -# %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        -# %h4.modal-title Modal title
+      .modal-body
+        %p Your request has been sent to all nearby health care professionals, please wait while we check which health care professional is available.
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} OK
 %script{:src => "https://maps.googleapis.com/maps/api/js"}
 :javascript
-
+  $('#myModal').modal('show')
 
   var myLatLng = {lat: parseFloat(#{@lat}), lng: parseFloat(#{@long})};
 
@@ -57,6 +74,29 @@
   else {
     setTimeout(function(){ allocate_doc() }, 60000);
   }
+
+
+  var sTime = new Date().getTime();
+  var countDown = 60;
+
+  function UpdateTime() {
+      var cTime = new Date().getTime();
+      var diff = cTime - sTime;
+      var seconds = countDown - Math.floor(diff / 1000);
+      if (seconds >= 0) {
+          var minutes = Math.floor(seconds / 60);
+          seconds -= minutes * 60;
+          $("#minutes").text(minutes < 10 ? "0" + minutes : minutes);
+          $("#seconds").text(seconds < 10 ? "0" + seconds : seconds);
+      } else {
+          $("#countdown").hide();
+          $("#aftercount").show();
+          clearInterval(counter);
+      }
+  }
+  UpdateTime();
+  var counter = setInterval(UpdateTime, 500);
+
 
 
 
