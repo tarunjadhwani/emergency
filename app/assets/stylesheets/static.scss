@@ -257,3 +257,27 @@ body {
   width: 100%;
   height: 400px;
 }
+
+.doctor-wrapper {
+  position: relative;
+  top: 30px;
+  padding-top: 20px;
+  width: 90%;
+  margin: 0 auto;
+  -webkit-box-shadow: 0px 1px 6px 0px rgba(97,97,97,0.5);
+  -moz-box-shadow: 0px 1px 6px 0px rgba(97,97,97,0.5);
+  box-shadow: 0px 1px 6px 0px rgba(97,97,97,0.5);
+}
+
+.status-doctor {
+  float: right;
+  margin-right: 20px;
+  line-height: 20px;
+  background-color: #72cf57;
+  color: #fff;
+  border-radius: 40px;
+  width: 70px;
+  text-align: center;
+  height: 20px;
+  font-size: 10px;
+}
