@@ -31,9 +31,12 @@ class RequestsController < ApplicationController
     location = Geocoder.search(request_params["address"])
     
     if @request.update(request_params)
-      @request.lat = location[0].latitude
-      @request.long = location[0].longitude
-      @request.save!
+      begin
+        @request.lat = location[0].latitude
+        @request.long = location[0].longitude
+        @request.save!
+      rescue
+      end
       if session['step'] == "hospital"
         redirect_to new_symptom_path(@request)
       else
