@@ -13,4 +13,10 @@ class StaticController < ApplicationController
 
   def patientCondition
   end
+
+  def doctorMap
+  end
+
+  def doctorSelected
+  end
 end
