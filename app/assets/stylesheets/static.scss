@@ -81,6 +81,22 @@ body {
   margin-top: -6px;
 }
 
+.back-phone {
+  display: inline-block;}
+
+.back-phone-image {
+  margin-top: -6px;
+}
+.back-location {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.back-location-image {
+  margin-top: -10px;
+  height: 25px;
+}
+
 .timer {
   display: inline-block;
   position: absolute;
@@ -229,11 +245,12 @@ body {
 .option-text {
   width: 80%;
   margin: 0 auto;
-  color: #424242;
+  color: #ADACAC;
   padding-top: 20px;
   font-family: 'Roboto', sans-serif;
   text-align: center;
   padding-bottom: 20px;
+  font-size: 10px;
 }
 
 .condition-patient {

@@ -16,7 +16,7 @@
   .col-md-12.col-xs-12
     #map{:style => "height: 100vh;"}
 
-#myModal.modal{sytle: "margin: 0 auto;"}
+#myModal.modal
   .modal-dialog
     .modal-content
       .modal-header
@@ -26,9 +26,10 @@
         %p Your request has been sent to all nearby health care professionals, please wait while we check which health care professional is available.
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} OK
+
 %script{:src => "https://maps.googleapis.com/maps/api/js"}
 :javascript
-  $('#myModal').modal('show')
+  $('#myModal').modal('show');
 
   var myLatLng = {lat: parseFloat(#{@lat}), lng: parseFloat(#{@long})};
 
