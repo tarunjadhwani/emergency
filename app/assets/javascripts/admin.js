@@ -19,3 +19,4 @@
 //= require jquery.validate.min
 //= require turbolinks
 //= require_tree .
+//= require zadmin_select2

@@ -1,5 +1,28 @@
-%p#notice= notice
+- content_for :title, @ambulance.vendor_name
 
+.panel.panel-default
+  .panel-heading
+    %h3.panel-title
+      %strong= @ambulance.vendor_name
+  .panel-body
+    %table.table.table-hover
+      %tbody
+        %tr
+          %td.col-xs-3
+            %strong Registration Number
+          %td.col-xs-9= @ambulance.registration_number
+        %tr
+          %td.col-xs-3
+            %strong Mobile
+          %td.col-xs-9= @ambulance.mobile
+        %tr
+          %td.col-xs-3
+            %strong Driver Name
+          %td.col-xs-9= @ambulance.driver_name
+        %tr
+          %td.col-xs-3
+            %strong Type
+          %td.col-xs-9= @ambulance.type
 
 = link_to 'Edit', edit_admin_ambulance_path(@ambulance)
 \|

@@ -11,7 +11,14 @@
       * Please fill all the symptoms as we can track the disease as accurate as possible.
     %form{:action => "patient-condition"}
       .condition-input-field
-        %input{:type => "text", :class => "condition-patient form-control"}
+        %select.js-example-basic-multiple.form-control.condition-patient{:multiple => "multiple"}
+          %option{:value => "orange"} orange
+          %option{:value => "white"} white
+          %option{:value => "purple"} purple
+          %option{:value => "red"} red
+          %option{:value => "blue"} blue
+          %option{:value => "green"} green
+          
     .option-text 
       OR
 
@@ -40,7 +47,39 @@
               %img{:src => "http://placehold.it/100", :class => "disease-feature-image"}
             .disease-feature-text
               ACCIDENT
+  .suggestion-wrapper
+    .col-sm-12.col-xs-12    
+      .condition-feature-wrapper
+        .row
           
+
+:javascript
+  var PRESELECTED_FRUITS = [
+    { id: '1', text: '123' },
+    { id: '2', text: 'Ma2321ngo' },
+    { id: '3', text: '3123' }
+  ];  
+
+  $(".js-example-basic-multiple").select2();
+  
+
+  $('.condition-patient').click(function(){
+    $('.condition-patient').toggleClass('select2-container-multi-active');
+  });
+
+  $('<option style= "display:none;">'+'ads'+'</option>').appendTo('.js-example-basic-multiple');
+  $(".js-example-basic-multiple").select2();
+
+
+
+  $('.condition-patient').bind("DOMSubtreeModified",function(){
+    var x = $('.select2-choices').height();
+    $('.condition-patient').css('height', x);
+    
+  });
+
+  
+
 
 
 

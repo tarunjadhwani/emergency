@@ -1,19 +1,46 @@
-%h1 Listing ambulances
-=params[:controller]
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
+%h3 Listing ambulances
 
-  %tbody
-    - @ambulances.each do |ambulance|
-      %tr
-        %td= link_to 'Show', [:admin, ambulance]
-        %td= link_to 'Edit', edit_admin_ambulance_path(ambulance)
-        %td= link_to 'Destroy', [:admin, ambulance], :method => :delete, :data => { :confirm => 'Are you sure?' }
+.row
+  .col-xs-12
+    .col-xs-2
+      %span.badge.listing-result
+        = pluralize(@ambulances.count, 'Doctor')
+    .col-xs-8
+      = search_form_for([:admin, @search_ambulances]) do |f|
+        .input-group
+          = f.search_field :vendor_name_or_registration_number_or_mobile_or_driver_name_cont, placeholder: 'Search by name or address ...', type: 'search', value: "#{params[:q][:vendor_name_or_registration_number_or_mobile_or_driver_name_cont] rescue nil}", class: "form-control"
+          %span.input-group-btn
+            = f.submit class: "btn btn-warning" do
+              %span.glyphicon.glyphicon-search
+
+    .col-xs-2
+      = link_to 'Create Doctor', new_admin_ambulance_path, class: "btn btn-primary btn-raised pull-right no-margin-top"
 
 %br
 
-= link_to 'New Ambulance', new_admin_ambulance_path
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th #
+        %th Vendor Name
+        %th Registration Number
+        %th Mobile
+        %th Driver
+        %th Action
+    %tbody
+      - @ambulances.each_with_index do |ambulance, i|
+        %tr
+          %th{scope: 'row'}
+            = i + 1
+          %td= link_to ambulance.vendor_name, [:admin, ambulance]
+          %td= ambulance.registration_number
+          %td= ambulance.mobile
+          %td= ambulance.driver_name
+          %td
+            = link_to 'Edit', edit_admin_ambulance_path(ambulance)
+            = link_to 'Destroy', [:admin, ambulance], method: :delete, data: { confirm: 'Are you sure?' }
+
+  .text-center
+    = paginate @ambulances
+

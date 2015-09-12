@@ -1,6 +1,13 @@
 %p#notice= notice
 
 
+%p
+  %b mobile:
+  = @request.mobile
+%p
+  %b Address:
+  = @request.address
+
 = link_to 'Edit', edit_admin_request_path(@request)
 \|
 = link_to 'Back', admin_requests_path

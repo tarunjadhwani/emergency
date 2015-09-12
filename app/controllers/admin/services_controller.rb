@@ -1,4 +1,4 @@
-class Admin::ServicesController < ApplicationController
+class Admin::ServicesController < AdminController
   before_action :set_admin_service, only: [:show, :edit, :update, :destroy]
 
   # GET /admin/services
@@ -54,6 +54,6 @@ class Admin::ServicesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def admin_service_params
-      params.require(:admin_service).permit(:name, :description)
+      params[:service].permit(:name, :description)
     end
 end
