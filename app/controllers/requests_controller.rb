@@ -28,7 +28,12 @@ class RequestsController < ApplicationController
   end
 
   def update
+    location = Geocoder.search(request_params["address"])
+    
     if @request.update(request_params)
+      @request.lat = location[0].latitude
+      @request.long = location[0].longitude
+      @request.save!
       if session['step'] == "hospital"
         redirect_to new_symptom_path(@request)
       else
@@ -52,7 +57,7 @@ class RequestsController < ApplicationController
     doctors.each do |doctor|
       begin
         x = Geocoder::Calculations.distance_between([request.lat,request.long], [doctor.lat,doctor.long])
-        if x.to_i < 3 && index < 6
+        if x.to_i < 10 && index < 6
           @doctors_all[index] = doctor
           index = index+1
         end
