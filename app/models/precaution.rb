@@ -8,6 +8,7 @@
 #  image_id    :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  disease_id  :integer
 #
 
 class Precaution < ActiveRecord::Base

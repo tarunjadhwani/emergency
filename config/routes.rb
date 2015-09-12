@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'requests/doctor', to: 'requests#new', as: :request_doctor
   get 'requests/:id/address', to: 'requests#new_address', as: :new_address
   get 'requests/:id/symptoms', to: 'requests#new_symptom', as: :new_symptom
+  get 'requests/:id/precautions', to: 'requests#precautions', as: :request_precautions
   resources :requests, only: [:new, :create, :update] do
   end
 end

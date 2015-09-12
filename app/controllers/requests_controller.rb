@@ -34,7 +34,23 @@ class RequestsController < ApplicationController
   end
 
   def new_symptom
+    @diseases = Disease.all
+    @symptoms = Symptom.all
+    @featured_diseases = Disease.where(featured: true)
+  end
 
+  def symptom_options
+    selected_symptom_ids = params[:symptom_ids].uniq
+    selected_symptom_objects = Symptom.find(selected_symptom_ids)
+    @options = []
+    selected_symptom_objects.each do |symptom|
+      symptom.diseases.each do |disease|
+        @options << disease.symptoms.where.not(id: symptom.id)
+      end
+    end
+    respond_to do |format|
+      format.json { render :json => [@options.flatten] }
+    end
   end
 
   def allocate_ambulance
@@ -54,6 +70,9 @@ class RequestsController < ApplicationController
   end
 
   def precautions
+    if params[:disease_id]
+      @request.diseases << Disease.find(params[:disease_id])
+    end
     @precautions = @request.diseases.first.precautions
   end
 
