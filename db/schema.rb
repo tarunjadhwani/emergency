@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150912001104) do
+ActiveRecord::Schema.define(version: 20150912032842) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -48,8 +48,9 @@ ActiveRecord::Schema.define(version: 20150912001104) do
 
   create_table "diseases", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.boolean  "featured",               default: false, null: false
   end
 
   create_table "diseases_precautions", id: false, force: :cascade do |t|
@@ -97,7 +98,10 @@ ActiveRecord::Schema.define(version: 20150912001104) do
     t.integer  "image_id",    limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "disease_id",  limit: 4
   end
+
+  add_index "precautions", ["disease_id"], name: "index_precautions_on_disease_id", using: :btree
 
   create_table "requests", force: :cascade do |t|
     t.string   "mobile",       limit: 255
@@ -107,8 +111,9 @@ ActiveRecord::Schema.define(version: 20150912001104) do
     t.integer  "ambulance_id", limit: 4
     t.integer  "hospital_id",  limit: 4
     t.integer  "doctor_id",    limit: 4
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.boolean  "book",                       default: false, null: false
   end
 
   add_index "requests", ["ambulance_id"], name: "index_requests_on_ambulance_id", using: :btree

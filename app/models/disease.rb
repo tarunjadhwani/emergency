@@ -6,6 +6,7 @@
 #  name       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  featured   :boolean          default(FALSE), not null
 #
 
 class Disease < ActiveRecord::Base

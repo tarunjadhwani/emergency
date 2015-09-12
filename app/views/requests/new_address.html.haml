@@ -1,0 +1,55 @@
+.col-sm-12.col-xs-12
+  .select-home-page
+    %a.back-arrow{href: new_request_path}
+      %img{src: "/assets/back-arrow.png", class: "back-arrow-image"}
+    .select-box-text-back
+      Your details
+
+
+.col-sm-12.col-xs-12
+  .phone-info-wrapper
+    .phone-description-text
+      Provide your address so that we can reach you
+    .current-location-select
+      .checkbox
+        %label
+          %input{type: "checkbox", class: "checkbox-select", value: "checked"}/
+          %span.checkbox-material
+            %span.check
+          Use Current Location
+    .option-text
+      OR
+    = simple_form_for(@request) do |f|
+      .phone-input-field
+        = f.input :address, label: false, input_html: {class: "phone-number-patient form-control"}
+      = f.input :lat, as: :hidden, input_html: {value: ''}
+      = f.input :long, as: :hidden, input_html: {value: ''}
+      .phone-submit-button-wrapper
+        = f.button :submit, 'Submit', class: "btn btn-success btn-phone-submit", data: {"disable-with" => "Saving ..."}
+
+
+:javascript
+  var x = document.getElementById("demo");
+  $('.checkbox-select').change(function(){
+    var submit_btn = $(".btn-phone-submit");
+    if($('.checkbox-select:checked').is(':checked')) {
+      if (navigator.geolocation) {
+        submit_btn.addClass('disabled');
+        submit_btn.val("Saving ...");
+        navigator.geolocation.getCurrentPosition(showPosition);
+      }
+      else {
+
+      }
+    }
+
+  });
+
+  function showPosition(position) {
+    $('#request_lat').val(position.coords.latitude);
+    $('#request_long').val(position.coords.longitude);
+    $('.edit_request').submit();
+  }
+
+
+

@@ -6,10 +6,8 @@ Rails.application.routes.draw do
   get 'next-hospital' => 'static#hospitalNextStep'
   get 'fill-address' => 'static#doctorAddress'
   get 'patient-condition' => 'static#patientCondition'
-  get '/symptom_options', to: 'static#symptom_options'
-  get '/doctor', to: 'static#doctorMap'
-  get '/doctor-selected', to: 'static#doctorSelected'
-
+  get 'doctor' => 'static#doctorMap'
+  get 'doctor-selected' => 'static#doctorSelected'
 
   namespace :admin do
     resources :requests
@@ -25,5 +23,13 @@ Rails.application.routes.draw do
     resources :hospitals
     resources :services
     resources :specialities
+  end
+
+  get 'requests/hospital', to: 'requests#new_hospital', as: :request_hospital
+  get 'requests/ambulance', to: 'requests#new_ambulance', as: :request_ambulance
+  get 'requests/doctor', to: 'requests#new', as: :request_doctor
+  get 'requests/:id/address', to: 'requests#new_address', as: :new_address
+  get 'requests/:id/symptoms', to: 'requests#new_symptom', as: :new_symptom
+  resources :requests, only: [:new, :create, :update] do
   end
 end

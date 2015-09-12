@@ -12,11 +12,17 @@
 #  doctor_id    :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  book         :boolean          default(FALSE), not null
 #
 
 class Request < ActiveRecord::Base
-  validates_presence_of :mobile
-  has_and_belongs_to_many :ambulances
+  belongs_to :ambulance
+  belongs_to :doctor
+  belongs_to :hospital
+
+  # has_and_belongs_to_many :ambulances
   has_and_belongs_to_many :symptoms
   has_and_belongs_to_many :diseases
+
+  validates_presence_of :mobile
 end

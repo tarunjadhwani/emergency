@@ -1,0 +1,73 @@
+.col-sm-12.col-xs-12
+  .select-home-page
+    %a.back-arrow{href: new_address_path(@request)}
+      %img{src: "/assets/back-arrow.png", class: "back-arrow-image"}
+    .select-box-text-back
+      Patient’s condition
+
+.col-sm-12.col-xs-12
+  .condition-text-wrapper
+    .condtion-text
+      * Please fill all the symptoms as we can track the disease as accurate as possible.
+    = simple_form_for(@request) do |f|
+      .condition-input-field
+        %select.form-control.condition-patient{multiple: "multiple", name: 'symptoms_ids[]'}
+          %optgroup{label: 'Symptoms'}
+            - @symptoms.each do |symptom|
+              %option{value: symptom.id}= symptom.name
+          %optgroup{label: 'Diseases'}
+            - @diseases.each do |disease|
+              %option{value: disease.id}= disease.name
+
+    .option-text
+      OR
+
+.row
+  .total-wrapper
+    .col-sm-12.col-xs-12
+      .condition-feature-wrapper
+        .row
+          - @featured_diseases.each do |disease|
+            .col-sm-6.col-xs-6
+              = link_to request_precautions_path(disease_id: disease.id) do
+                .disease-feature-image-wrapper
+                  %img{src: "http://placehold.it/100", class: "disease-feature-image"}
+                .disease-feature-text
+                  = disease.name.upcase
+  .suggestion-wrapper
+    .col-sm-12.col-xs-12
+      .condition-feature-wrapper
+        .row
+
+
+:javascript
+  $('.condition-patient').select2()
+  .on('select2-selecting', function(e) {
+    $('.option-text').fadeOut('slow');
+    $('.condition-feature-wrapper').fadeOut('slow');
+  })
+  .on('change', function(e) {
+    if(!$(this).val()) {
+      $('.option-text').fadeIn('slow');
+      $('.condition-feature-wrapper').fadeIn('slow');
+    }
+  });
+
+  $('.condition-patient').click(function(){
+    $('.condition-patient').toggleClass('select2-container-multi-active');
+  });
+
+  $('.condition-patient').bind("DOMSubtreeModified",function(){
+    var x = $('.select2-choices').height();
+    $('.condition-patient').css('height', x);
+  });
+
+
+
+
+
+
+
+
+
+

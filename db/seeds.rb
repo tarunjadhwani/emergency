@@ -32,4 +32,27 @@ end
   end
 end
 
-[]
+# Disease
+10.times do
+  disease = Disease.new(name: Faker::Lorem.word)
+
+  unless disease.save
+    ap disease.errors.messages
+  end
+end
+
+# Symptom
+42.times do
+  symptom = Symptom.new(name: Faker::Lorem.word)
+
+  unless symptom.save
+    ap symptom.errors.messages
+  end
+end
+
+# DiseaseSymptoms
+Disease.all.each do |disease|
+  offset = rand(Symptom.count)
+  rand_symptoms = Symptom.offset(offset).first(6)
+  disease.symptoms << rand_symptoms
+end
