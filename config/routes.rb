@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   get 'next-hospital' => 'static#hospitalNextStep'
   get 'fill-address' => 'static#doctorAddress'
   get 'patient-condition' => 'static#patientCondition'
-  get 'doctor' => 'static#doctorMap'
-  get 'doctor-selected' => 'static#doctorSelected'
+  get 'doctor' => 'requests#doctorMap'
+  get 'doctor-selected' => 'requests#doctorSelected'
+  get 'doctor-listing' => 'requests#doctorListing'
+  get 'doctor-request' => 'requests#doctorRequest'
+  get 'allocate_doctor' => 'requests#allocate_doctor'
 
   namespace :admin do
     resources :requests

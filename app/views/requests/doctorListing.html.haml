@@ -1,0 +1,41 @@
+.col-sm-12.col-xs-12
+  .select-home-page
+    %a.back-arrow{:href => "/"}
+      %img{:src => "/assets/back-arrow.png", :class => "back-arrow-image"}
+    .select-box-text-back
+      Patient’s condition
+
+.row
+  .col-sm-12.col-xs-12
+    .notify-no-doc
+      Sorry, it seems like all the nearby health professionals might be busy
+
+.row
+  - @doctors_all.each_with_index do |doctor, index|
+    .col-sm-12.col-xs-12{:style => "margin-bottom: 15px;"}
+      .doctor-wrapper
+        .row
+          .col-sm-12.col-xs-12
+            .doctor-photo-wrapper
+              %img{:src => "/assets/custom.png"}
+            .doctor-name-wrapper
+              = doctor.name
+            .status-doctor-distance
+              = @distance[index].to_i.to_s + "KM"
+        .row
+          .col-sm-12.col-xs-12
+            .location-photo-wrapper
+              %img{:src => "/assets/location.png"}
+            .location-name-wrapper
+              = doctor.address
+        .row
+          .col-sm-12.col-xs-12
+            .phone-photo-wrapper
+              %img{:src => "/assets/phone.png"}
+            .phone-name-wrapper
+              = doctor.mobile
+        .row
+          %a{:href=>"tel:#{doctor.mobile}"}
+          .call-doctor
+            CALL
+  

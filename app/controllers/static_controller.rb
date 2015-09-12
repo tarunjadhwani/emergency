@@ -3,9 +3,11 @@ class StaticController < ApplicationController
   end
 
   def doctorNextStep
+    session['step'] = "doctor"
   end
 
   def hospitalNextStep
+    session['step'] = "hospital"
   end
 
   def doctorAddress
@@ -13,10 +15,5 @@ class StaticController < ApplicationController
 
   def patientCondition
   end
-
-  def doctorMap
-  end
-
-  def doctorSelected
-  end
+  
 end

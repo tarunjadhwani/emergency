@@ -1,0 +1,71 @@
+.col-sm-12.col-xs-12
+  .select-home-page
+    %a.back-arrow{:href => "/"}
+      %img{:src => "/assets/back-arrow.png", :class => "back-arrow-image"}
+    .select-box-text-back
+      Patient’s condition
+
+.row
+  .col-md-12.col-xs-12
+    #map{:style => "height: 100vh;"}
+
+%script{:src => "https://maps.googleapis.com/maps/api/js"}
+:javascript
+  
+
+  var myLatLng = {lat: parseFloat(#{@lat}), lng: parseFloat(#{@long})};
+  
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+  });
+  
+  var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+  var image = 'assets/custom.png';
+
+  $.getJSON( "/doctor-request.json", function( data ) {
+    console.log(data[0].length);
+    for(var i = 0; i< data[0].length; i++) {
+      console.log("dsadas");
+      var myLatLng2 = {lat: parseFloat(data[0][i]['lat']), lng: parseFloat(data[0][i]['long'])};
+      var marker = new google.maps.Marker({
+        position: myLatLng2,
+        map: map,
+        icon: image
+      });
+    }
+  });
+
+  var timeout = Math.floor(Math.random() * 50000) + 20000;
+
+  function allocate_doc() {
+    $.getJSON( "/allocate_doctor.json", function( data ) {
+    });
+    window.location = "/doctor-selected";
+  }
+
+  if(timeout > 60000) {
+    setTimeout(function(){ window.location = "/doctor-listing" }, 60000);
+  }
+  else {
+    setTimeout(function(){ allocate_doc() }, 60000);
+  }
+
+  
+
+  
+  
+    
+    
+  
+
+
+
+

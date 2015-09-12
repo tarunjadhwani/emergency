@@ -8,12 +8,37 @@
 .row
   .col-sm-12.col-xs-12
     #map{:style => "height: 300px;"}
-  .col-sm-12.col-xs-12
+  .col-sm-12.col-xs-12{:style => "margin-bottom: 30px;"}
     .doctor-wrapper
       .row
-        .selected-doctor
         .status-doctor
           Accepted
+      .row
+        .col-sm-12.col-xs-12
+          .doctor-photo-wrapper
+            %img{:src => "/assets/custom.png"}
+          .doctor-name-wrapper
+            = @request.doctor.name
+          .status-doctor-distance
+            = "3 KM"
+      .row
+        .col-sm-12.col-xs-12
+          .location-photo-wrapper
+            %img{:src => "/assets/location.png"}
+          .location-name-wrapper
+            = @request.doctor.address
+      .row
+        .col-sm-12.col-xs-12
+          .phone-photo-wrapper
+            %img{:src => "/assets/phone.png"}
+          .phone-name-wrapper
+            = @request.doctor.mobile
+      .row
+        %a{:href=>"tel:#{@request.doctor.mobile}"}
+        .call-doctor
+          CALL
+          
+
 
 
 
@@ -23,12 +48,12 @@
   var path = [];
 
   // Save the current position
-  path.push(new google.maps.LatLng('12.9667', '77.5667'));
-  var myLatLng = {lat: 12.9667, lng: 77.5667};
-  var myLatLng2 = {lat: 12.9617, lng: 77.5697};
+  path.push(new google.maps.LatLng(parseFloat('#{@request.lat}'), parseFloat('#{@request.long}')));
+  var myLatLng = {lat: parseFloat('#{@request.lat}'), lng: parseFloat('#{@request.long}')};
+  var myLatLng2 = {lat: parseFloat('#{@request.doctor.lat}'), lng: parseFloat('#{@request.doctor.long}')};
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
+    zoom: 12,
     center: myLatLng
   });
 
@@ -41,7 +66,7 @@
   var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
   var image = 'assets/custom.png';
   
-  path.push(new google.maps.LatLng(12.9617,77.5697));
+  path.push(new google.maps.LatLng(parseFloat('#{@request.doctor.lat}'),parseFloat('#{@request.doctor.long}')));
   var latLngBounds = new google.maps.LatLngBounds();
   for(var i = 0; i < path.length; i++) {
     latLngBounds.extend(path[i]);
@@ -56,11 +81,11 @@
   // Fit the bounds of the generated points
   map.fitBounds(latLngBounds);
 
-  var to = {lat: 12.9667, lng: 77.5667};
-  var from = {lat: 12.9617, lng: 77.5697};
+  var to = {lat: parseFloat('#{@request.lat}'), lng: parseFloat('#{@request.long}')};
+  var from = {lat: parseFloat('#{@request.doctor.lat}'), lng: parseFloat('#{@request.doctor.long}')};
   var myOptions = {
     zoom: 15,
-    center: new google.maps.LatLng(12.9667, 77.5667),
+    center: new google.maps.LatLng(parseFloat('#{@request.lat}'), parseFloat('#{@request.long}')),
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   // Draw the map

@@ -1,8 +1,8 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:new_address, :update, :new_symptom, :allocate_ambulance, :allocate_doctor, :precautions]
+  before_action :set_request, only: [:new_address, :update, :new_symptom, :allocate_ambulance, :precautions]
 
   def new_hospital
-
+    session['step'] = "hospital"
   end
 
   def new_ambulance
@@ -11,12 +11,13 @@ class RequestsController < ApplicationController
 
   def new
     @request = Request.new
+    session['step'] = "doctor"
   end
 
   def create
     @request = Request.new(request_params)
-
     if @request.save
+      session["request_id"] = @request.id
       redirect_to new_address_path(@request)
     else
     end
@@ -28,8 +29,55 @@ class RequestsController < ApplicationController
 
   def update
     if @request.update(request_params)
-      redirect_to new_symptom_path(@request)
+      if session['step'] == "hospital"
+        redirect_to new_symptom_path(@request)
+      else
+        redirect_to doctor_path()
+      end
     else
+    end
+  end
+
+  def doctorMap
+    request = Request.find(session["request_id"])
+    @lat = request.lat 
+    @long = request.long
+  end
+
+  def doctorRequest
+    request = Request.find(session["request_id"])
+    doctors = Doctor.all
+    @doctors_all = []
+    index = 0
+    doctors.each do |doctor|
+      x = Geocoder::Calculations.distance_between([request.lat,request.long], [doctor.lat,doctor.long])
+      if x.to_i < 3 && index < 6
+        @doctors_all[index] = doctor
+        index = index+1
+      end
+    end
+    respond_to do |format|
+      format.json { render :json => [@doctors_all.flatten] }
+    end
+  end
+
+  def doctorSelected
+    @request = Request.find(session["request_id"])
+  end
+
+  def doctorListing
+    request = Request.find(session["request_id"])
+    doctors = Doctor.all
+    @doctors_all = []
+    @distance = []
+    index = 0
+    doctors.each do |doctor|
+      x = Geocoder::Calculations.distance_between([request.lat,request.long], [doctor.lat,doctor.long])
+      if x.to_i < 3 && index < 6
+        @doctors_all[index] = doctor
+        @distance[index] = x.to_f*1.8
+        index = index+1
+      end
     end
   end
 
@@ -62,11 +110,25 @@ class RequestsController < ApplicationController
   end
 
   def allocate_doctor
-    if [false, false, true].sample
-      offset = rand(Doctor.count)
-      rand_doctor = Doctor.offset(offset).first
-      @request.update(doctor: rand_doctor)
+    session["request_id"]
+    @request = Request.find(session["request_id"])
+    doctors = Doctor.all
+    @doctors_all = []
+    index = 0
+    doctors.each do |doctor|
+      x = Geocoder::Calculations.distance_between([@request.lat,@request.long], [doctor.lat,doctor.long])
+      if x.to_i < 3 && index < 6
+        @doctors_all[index] = doctor
+        index = index+1
+      end
     end
+    index = index - 1
+    random = rand(0...index)
+    @request.update(doctor: @doctors_all[random])
+    respond_to do |format|
+      format.json { render :json => [@request] }
+    end
+
   end
 
   def precautions
