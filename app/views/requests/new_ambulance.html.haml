@@ -12,10 +12,10 @@
       .phone-description-text
         Provide your mobile number so that we can reach you
       .phone-input-field
-        = f.input :mobile, label: false, input_html: {class: "phone-number-patient form-control", type: 'number', min: 0, step: 1, required: true}
+        = f.input :mobile, label: false, input_html: {class: "phone-number-patient form-control", type: 'number', min: 0, step: 1, required: true, number: true}
         = f.input :book, as: :hidden, input_html: {value: true}
       .phone-submit-button-wrapper
         = f.button :submit, 'Submit', class: "btn btn-success btn-phone-submit", data: {"disable-with" => "Saving ..."}
 
 :javascript
-  $("#request_mobile").validate();
+  $("#new_request").validate();
