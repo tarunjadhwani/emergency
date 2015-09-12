@@ -16,16 +16,16 @@
   .col-md-12.col-xs-12
     #map{:style => "height: 100vh;"}
 
-#myModal.modal
+#myModal.modal{style: "padding-top: 50%;"}
   .modal-dialog
     .modal-content
       .modal-header
         -# %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
         -# %h4.modal-title Modal title
       .modal-body
-        %p Your request has been sent to all nearby health care professionals, please wait while we check which health care professional is available.
+        %p Your request has been sent to all nearby health care professionals.
       .modal-footer
-        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} OK
+        %button.btn.btn-default.btn-color{"data-dismiss" => "modal", :type => "button"} OK
 
 %script{:src => "https://maps.googleapis.com/maps/api/js"}
 :javascript

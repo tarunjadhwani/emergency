@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'allocate_doctor' => 'requests#allocate_doctor'
 
   namespace :admin do
+    root 'requests#index'
     resources :requests
     resources :doctors
     resources :ambulances
