@@ -3,7 +3,7 @@
     %a.back-arrow{:href => "/"}
       %img{:src => "/assets/back-arrow.png", :class => "back-arrow-image"}
     .select-box-text-back
-      Patient’s condition
+      Getting Connected
 
 .row
   .col-md-12.col-xs-12
@@ -11,10 +11,10 @@
 
 %script{:src => "https://maps.googleapis.com/maps/api/js"}
 :javascript
-  
+
 
   var myLatLng = {lat: parseFloat(#{@lat}), lng: parseFloat(#{@long})};
-  
+
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
@@ -26,7 +26,7 @@
     map: map,
     title: 'Hello World!'
   });
-  
+
   var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
   var image = 'assets/custom.png';
 
@@ -58,13 +58,13 @@
     setTimeout(function(){ allocate_doc() }, 60000);
   }
 
-  
 
-  
-  
-    
-    
-  
+
+
+
+
+
+
 
 
 

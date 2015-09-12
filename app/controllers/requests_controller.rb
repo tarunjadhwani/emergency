@@ -40,7 +40,7 @@ class RequestsController < ApplicationController
 
   def doctorMap
     request = Request.find(session["request_id"])
-    @lat = request.lat 
+    @lat = request.lat
     @long = request.long
   end
 
@@ -50,10 +50,13 @@ class RequestsController < ApplicationController
     @doctors_all = []
     index = 0
     doctors.each do |doctor|
-      x = Geocoder::Calculations.distance_between([request.lat,request.long], [doctor.lat,doctor.long])
-      if x.to_i < 3 && index < 6
-        @doctors_all[index] = doctor
-        index = index+1
+      begin
+        x = Geocoder::Calculations.distance_between([request.lat,request.long], [doctor.lat,doctor.long])
+        if x.to_i < 3 && index < 6
+          @doctors_all[index] = doctor
+          index = index+1
+        end
+      rescue
       end
     end
     respond_to do |format|
@@ -72,11 +75,14 @@ class RequestsController < ApplicationController
     @distance = []
     index = 0
     doctors.each do |doctor|
-      x = Geocoder::Calculations.distance_between([request.lat,request.long], [doctor.lat,doctor.long])
-      if x.to_i < 3 && index < 6
-        @doctors_all[index] = doctor
-        @distance[index] = x.to_f*1.8
-        index = index+1
+      begin
+        x = Geocoder::Calculations.distance_between([request.lat,request.long], [doctor.lat,doctor.long])
+        if x.to_i < 3 && index < 6
+          @doctors_all[index] = doctor
+          @distance[index] = x.to_f*1.8
+          index = index+1
+        end
+      rescue
       end
     end
   end
@@ -116,10 +122,13 @@ class RequestsController < ApplicationController
     @doctors_all = []
     index = 0
     doctors.each do |doctor|
-      x = Geocoder::Calculations.distance_between([@request.lat,@request.long], [doctor.lat,doctor.long])
-      if x.to_i < 3 && index < 6
-        @doctors_all[index] = doctor
-        index = index+1
+      begin
+        x = Geocoder::Calculations.distance_between([@request.lat,@request.long], [doctor.lat,doctor.long])
+        if x.to_i < 3 && index < 6
+          @doctors_all[index] = doctor
+          index = index+1
+        end
+      rescue
       end
     end
     index = index - 1

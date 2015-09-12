@@ -8,24 +8,26 @@
 
 .col-sm-12.col-xs-12
   .phone-info-wrapper
-    .phone-description-text
+    .phone-description-text.phone-desc-paddding-zero
       Provide your address so that we can reach you
     .current-location-select
-      .checkbox
+      .checkbox.primary
         %label
           %input{type: "checkbox", class: "checkbox-select", value: "checked"}/
           %span.checkbox-material
             %span.check
           Use Current Location
+
     .option-text
       OR
     = simple_form_for(@request) do |f|
       .phone-input-field
-        = f.input :address, label: false, input_html: {class: "phone-number-patient form-control"}
+        = f.input :address, label: false, input_html: {class: "phone-number-patient form-control", placeholder: "Patient's current address"}
       = f.input :lat, as: :hidden, input_html: {value: ''}
       = f.input :long, as: :hidden, input_html: {value: ''}
       .phone-submit-button-wrapper
-        = f.button :submit, 'Submit', class: "btn btn-success btn-phone-submit", data: {"disable-with" => "Saving ..."}
+        = f.button :submit, 'Submit', class: "btn btn-default btn-color btn-phone-submit", data: {"disable-with" => "Saving ..."}
+        .clearfix
 
 
 :javascript

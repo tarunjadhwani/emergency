@@ -8,13 +8,14 @@
 .col-sm-12.col-xs-12
   .phone-info-wrapper
     = simple_form_for(@request) do |f|
-
-      .phone-description-text
-        Provide your mobile number so that we can reach you
-      .phone-input-field
-        = f.input :mobile, label: false, input_html: {class: "phone-number-patient form-control", type: 'number', min: 0, step: 1, required: true, number: true}
-      .phone-submit-button-wrapper
-        = f.button :submit, 'Submit', class: "btn btn-success btn-phone-submit", data: {"disable-with" => "Saving ..."}
+      .form-group
+        .phone-description-text
+          Provide your mobile number so that we can reach you
+        .phone-input-field
+          = f.input :mobile, label: false, input_html: {class: "phone-number-patient form-control", type: 'number', min: 0, step: 1, required: true, number: true, placeholder: "91-", autocomplete: false}
+        .phone-submit-button-wrapper
+          = f.button :submit, 'Submit', class: "btn btn-color btn-phone-submit", data: {"disable-with" => "Saving ..."}
+          .clearfix
 
 :javascript
   $("#new_request").validate();

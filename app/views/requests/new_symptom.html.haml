@@ -10,14 +10,18 @@
     .condtion-text
       * Please fill all the symptoms as we can track the disease as accurate as possible.
     = simple_form_for(@request) do |f|
-      .condition-input-field
-        %select.form-control.condition-patient{multiple: "multiple", name: 'symptoms_ids[]'}
-          %optgroup{label: 'Symptoms'}
-            - @symptoms.each do |symptom|
-              %option{value: symptom.id}= symptom.name
-          %optgroup{label: 'Diseases'}
-            - @diseases.each do |disease|
-              %option{value: disease.id}= disease.name
+      .row
+        .col-sm-8
+          .condition-input-field
+            %select.form-control.condition-patient{multiple: "multiple", name: 'symptoms_ids[]'}
+              %optgroup{label: 'Symptoms'}
+                - @symptoms.each do |symptom|
+                  %option{value: symptom.id}= symptom.name
+              %optgroup{label: 'Diseases'}
+                - @diseases.each do |disease|
+                  %option{value: disease.id}= disease.name
+        .col-sm-4
+          = f.button :submit, 'Submit', class: "btn btn-color btn-phone-submit"
 
     .option-text
       OR
