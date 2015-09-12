@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911230359) do
+ActiveRecord::Schema.define(version: 20150912000123) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -87,7 +87,10 @@ ActiveRecord::Schema.define(version: 20150911230359) do
     t.integer  "image_id",    limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "disease_id",  limit: 4
   end
+
+  add_index "precautions", ["disease_id"], name: "index_precautions_on_disease_id", using: :btree
 
   create_table "requests", force: :cascade do |t|
     t.string   "mobile",       limit: 255

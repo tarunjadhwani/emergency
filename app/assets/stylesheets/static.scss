@@ -7,14 +7,14 @@
 
 html {
   font-family: 'Roboto', sans-serif !important;
-  font-size: 16px; 
+  font-size: 16px;
   @include from($break-sm) {
     font-size: 16px;
   }
 }
 
-body { 
-  
+body {
+
 }
 
 .link-block {
@@ -62,38 +62,43 @@ body {
   top: 50%;
   transform: translateY(-50%);
   text-decoration: none;
+  padding-top: 10px;
 }
 
 .hospital-go {
-  height: 46.5vh;
+  height: 42.5vh;
   margin-left: -15px;
   background-color: #7ca4e9;
-  margin-right: -15px;
-  margin-bottom: 0.5vh;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 3vh;
+  margin-top: 3vh;
 }
 
 .ambulance-go {
-  height: 46.5vh;
-  margin-left: -15px;
+  height: 42.5vh;
+  margin-left: 10px;
   background-color: #7ae68e;
-  margin-right: -15px;
-  margin-bottom: 0.5vh;
+  margin-right: 10px;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
 }
 
 .vehicle-go {
-  height: 46.5vh;
-  margin-left: -15px;
+  height: 42.5vh;
+  margin-left: 10px;
   background-color: #cae562;
-  margin-right: -15px;
-  margin-bottom: 0.5vh;
+  margin-right: 10px;
+  margin-bottom: 3vh;
 }
 
 .call-doctor-home-go {
-  height: 46.5vh;
+  height: 42.5vh;
   margin-left: -15px;
-  background-color: #7ce4e9; 
-  margin-right: -15px;
-  margin-top: 0.5vh;
+  background-color: #7ce4e9;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 3vh;
 }
 
 .hospital-go-image {
@@ -109,7 +114,7 @@ body {
 }
 
 .hospital-go-text {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #fff;
   margin-top: 20px;
   text-align: center;

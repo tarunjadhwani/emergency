@@ -1,5 +1,5 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:new_address, :update, :new_symptom]
+  before_action :set_request, only: [:new_address, :update, :new_symptom, :allocate_ambulance, :allocate_doctor, :precautions]
 
   def new_hospital
 
@@ -35,6 +35,26 @@ class RequestsController < ApplicationController
 
   def new_symptom
 
+  end
+
+  def allocate_ambulance
+    if [false, false, true].sample
+      offset = rand(Ambulance.count)
+      rand_ambulance = Ambulance.offset(offset).first
+      @request.update(ambulance: rand_ambulance)
+    end
+  end
+
+  def allocate_doctor
+    if [false, false, true].sample
+      offset = rand(Doctor.count)
+      rand_doctor = Doctor.offset(offset).first
+      @request.update(doctor: rand_doctor)
+    end
+  end
+
+  def precautions
+    @precautions = @request.diseases.first.precautions
   end
 
   private
