@@ -5,9 +5,5 @@
 .well
   = render 'form'
 
-= link_to 'Show', [:admin, @admin_service]
-\|
-= link_to 'Back', admin_services_path
-
 :javascript
   $(".edit_service").validate();

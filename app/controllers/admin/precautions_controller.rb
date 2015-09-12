@@ -4,7 +4,8 @@ class Admin::PrecautionsController < AdminController
   # GET /precautions
   # GET /precautions.json
   def index
-    @precautions = Precaution.all
+    @search_precautions = Precaution.order(created_at: :desc).ransack(params[:q])
+    @precautions = @search_precautions.result(distinct: true).page(params[:page])
   end
 
   # GET /precautions/1
@@ -69,6 +70,6 @@ class Admin::PrecautionsController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def precaution_params
-      params.require(:precaution).permit(:description, :video_url)
+      params.require(:precaution).permit(:description, :video_url, disease_ids: [])
     end
 end

@@ -1,21 +1,47 @@
-%h1 Listing diseases
+- content_for :title, 'Listing diseases'
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
-      %th
+%h3 Listing diseases
 
-  %tbody
-    - @diseases.each do |disease|
-      %tr
-        %td= disease.name
-        %td= link_to 'Show', [:admin, disease]
-        %td= link_to 'Edit', edit_admin_disease_path(disease)
-        %td= link_to 'Destroy', [:admin, disease], :method => :delete, :data => { :confirm => 'Are you sure?' }
+.row
+  .col-xs-12
+    .col-xs-2
+      %span.badge.listing-result
+        = pluralize(@diseases.total_count, 'Disease')
+    .col-xs-8
+      = search_form_for([:admin, @search_diseases]) do |f|
+        .input-group
+          = f.search_field :name_cont, placeholder: 'Search by name or address ...', type: 'search', value: "#{params[:q][:name_cont] rescue nil}", class: "form-control"
+          %span.input-group-btn
+            = f.submit class: "btn btn-warning" do
+              %span.glyphicon.glyphicon-search
+
+    .col-xs-2
+      = link_to 'Create Disease', new_admin_disease_path, class: "btn btn-primary btn-raised pull-right no-margin-top"
 
 %br
 
-= link_to 'New Disease', new_admin_disease_path
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th #
+        %th Name
+        %th Symptoms
+        %th Precautions
+        %th Actions
+    %tbody
+      - @diseases.each_with_index do |disease, i|
+        %tr
+          %th{scope: 'row'}
+            = i + 1
+          %td= link_to disease.name, [:admin, disease]
+          %td= disease.symptoms.map{|m| m.name}
+          %td= disease.precautions.map{|m| m.description}
+          %td
+            = link_to 'Edit', edit_admin_disease_path(disease)
+            = link_to 'Destroy', [:admin, disease], method: :delete, data: { confirm: 'Are you sure?' }
+
+  .text-center
+    = paginate @diseases
+
+

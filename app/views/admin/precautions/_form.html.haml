@@ -2,8 +2,21 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :description
-    = f.input :video_url
+    .row
+      .col-xs-12
+        .form-group
+          = f.input :description, input_html: {class: "form-control"}
+  .form-inputs
+    .row
+      .col-xs-12
+        .form-group
+          = f.input :video_url, input_html: {class: "form-control"}
+  .form-inputs
+    .row
+      .col-xs-12
+        .form-group
+          = f.association :diseases, input_html: {class: "form_control select2"}
 
   .form-actions
-    = f.button :submit
+    = link_to "Cancel", admin_precautions_path, class: "btn btn-default"
+    = f.button :submit, class: "btn-primary"

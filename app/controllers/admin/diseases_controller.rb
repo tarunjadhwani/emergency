@@ -4,7 +4,8 @@ class Admin::DiseasesController < AdminController
   # GET /diseases
   # GET /diseases.json
   def index
-    @diseases = Disease.all
+    @search_diseases = Disease.order(created_at: :desc).ransack(params[:q])
+    @diseases = @search_diseases.result(distinct: true).page(params[:page])
   end
 
   # GET /diseases/1
@@ -69,6 +70,6 @@ class Admin::DiseasesController < AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def disease_params
-      params.require(:disease).permit(:name)
+      params.require(:disease).permit(:name, symptom_ids: [], precaution_ids: [])
     end
 end
