@@ -1,0 +1,58 @@
+.col-sm-12.col-xs-12
+  .select-home-page
+    %a.back-arrow{:href => "/"}
+      %img{:src => "/assets/back-arrow.png", :class => "back-arrow-image"}
+    .select-box-text-back
+      Patient’s condition
+
+.row
+  .col-md-12.col-xs-12
+    #map{:style => "height: 100vh;"}
+
+%script{:src => "https://maps.googleapis.com/maps/api/js"}
+:javascript
+  
+  var myLatLng = {lat: 12.9667, lng: 77.5667};
+  var myLatLng2 = {lat: 12.9617, lng: 77.5667};
+  var myLatLng3 = {lat: 12.9697, lng: 77.5667};
+  var myLatLng4 = {lat: 12.9667, lng: 77.5697};
+  var myLatLng5 = {lat: 12.9667, lng: 77.5627};
+
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+    center: myLatLng
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+  });
+  
+  var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+  var image = 'assets/custom.png';
+  var marker = new google.maps.Marker({
+    position: myLatLng2,
+    map: map,
+    icon: image
+  });
+  var marker = new google.maps.Marker({
+    position: myLatLng3,
+    map: map,
+    icon: image
+  });
+  var marker = new google.maps.Marker({
+    position: myLatLng4,
+    map: map,
+    icon: image
+  });
+  var marker = new google.maps.Marker({
+    position: myLatLng5,
+    map: map,
+    icon: image
+  });
+
+
+
+

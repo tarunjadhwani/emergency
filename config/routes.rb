@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get 'fill-address' => 'static#doctorAddress'
   get 'patient-condition' => 'static#patientCondition'
   get '/symptom_options', to: 'static#symptom_options'
+  get '/doctor', to: 'static#doctorMap'
+  get '/doctor-selected', to: 'static#doctorSelected'
+
 
   namespace :admin do
     resources :requests

@@ -14,6 +14,12 @@ class StaticController < ApplicationController
   def patientCondition
   end
 
+  def doctorMap
+  end
+
+  def doctorSelected
+  end
+
   def symptom_options
     selected_symptom_ids = params[:symptom_ids]
     selected_symptom_objects = Symptom.find(selected_symptom_ids)
